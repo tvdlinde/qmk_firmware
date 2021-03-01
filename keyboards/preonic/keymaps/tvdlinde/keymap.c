@@ -26,18 +26,15 @@ uint32_t layer_state_set_user(uint32_t state) {
 #ifdef AUDIO_ENABLE
     switch (biton32(state)) {
     case 1:
-    rgblight_enable();
       rgblight_setrgb(RGB_GREEN);
       PLAY_SONG(song_one);
       break;
     case 2:
-    rgblight_enable();
       rgblight_setrgb(RGB_RED);
       PLAY_SONG(song_two);
       break;
     default: //  for any other layers, or the default layer
       rgblight_setrgb(RGB_OFF);
-      rgblight_disable();
       PLAY_SONG(song_base);
       break;}
 #endif
