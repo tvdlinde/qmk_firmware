@@ -42,4 +42,9 @@
 
 #define TAPPING_TERM 250
 
+#define NO_AUTO_SHIFT_ALPHA
+
+                                
+
+
                                 
