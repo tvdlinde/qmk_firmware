@@ -64,11 +64,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_TRNS,        KC_TRNS,      KC_LBRC,         KC_RBRC,      KC_TRNS,  TO(0),           KC_TRNS,      KC_TRNS,        KC_1,                KC_2,         KC_3,          KC_TRNS, 
 		KC_TRNS,        KC_TRNS,    LALT(KC_BSLASH),   KC_TRNS,      KC_TRNS,  KC_DELETE,       KC_TRNS,      KC_BSPC,        KC_0,      LALT(LSFT(KC_BSLASH)),  KC_TRNS,       KC_TRNS),
 	[2] = LAYOUT_ortho_5x12(
-		KC_TRNS,        KC_TRNS,      KC_TRNS,         KC_TRNS,      KC_TRNS,  RESET,           KC_TRNS,      KC_TRNS,        KC_TRNS,             KC_PGUP,      KC_TRNS,       KC_TRNS,
+		KC_TRNS,        KC_TRNS,      KC_TRNS,         KC_TRNS,      KC_TRNS,  KC_TAB,          KC_TRNS,      KC_TRNS,        KC_TRNS,             KC_PGUP,      KC_TRNS,       KC_TRNS,
 		KC_TRNS,        KC_TRNS,      KC_TRNS,         KC_TRNS,      KC_TRNS,  KC_TRNS,         KC_TRNS,      KC_HOME,        LALT(KC_LEFT),       KC_UP,        LALT(KC_RGHT), KC_END, 
 		KC_TRNS,        KC_TRNS,      KC_TRNS,         KC_TRNS,      KC_TRNS,  KC_TRNS,         KC_TRNS,      KC_DLR,         KC_LEFT,             KC_DOWN,      KC_RGHT,       KC_DLR, 
 		KC_TRNS,        KC_TRNS,      KC_TRNS,         KC_TRNS,      KC_TRNS,  KC_TRNS,         TO(0),        KC_TRNS,        KC_BSPACE,           KC_PGDOWN,    KC_DELETE,     KC_TRNS, 
-		KC_TRNS,        KC_TRNS,      KC_TRNS,         KC_TRNS,      KC_TRNS,  KC_TRNS,         KC_ENT,       KC_BSPC,        KC_TRNS,             KC_TRNS,      KC_TRNS,       KC_TRNS),
+		KC_TRNS,        KC_TRNS,      KC_TRNS,         KC_TRNS,      KC_TRNS,  KC_TRNS,         KC_ENT,       KC_BSPC,        KC_TRNS,             KC_TRNS,      KC_TRNS,       RESET),
 };
 
 
