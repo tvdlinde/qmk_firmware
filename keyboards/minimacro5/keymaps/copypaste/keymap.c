@@ -3,6 +3,7 @@
 enum layers {
      _MAIN,
      _UPDOWN,
+     _PAGEUPDOWN,
      _DELETE,
 };
 
@@ -14,6 +15,13 @@ void encoder_update_user(uint8_t index, bool clockwise) {
    				 } else {
     		    tap_code(KC_BSPACE);
                 }  
+                break;            
+            case _PAGEUPDOWN:
+                if (clockwise) {
+                tap_code(KC_PGDOWN);
+                } else {
+                tap_code(KC_PGUP);
+                }
                 break;
             case _UPDOWN:
                 if (clockwise) {
@@ -39,9 +47,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = { //buttion closest
      LGUI(KC_V), LT(_UPDOWN,LGUI(KC_C)), KC_LSFT, LT(_DELETE,LCTL(KC_X)), KC_LOPT
   ),
   [_UPDOWN] = LAYOUT_ortho_1x5(
+     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, MO(_PAGEUPDOWN)
+  ),  
+  [_PAGEUPDOWN] = LAYOUT_ortho_1x5(
      KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
   ),
   [_DELETE] = LAYOUT_ortho_1x5(
-     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
+     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_LOPT
   ),
 };
