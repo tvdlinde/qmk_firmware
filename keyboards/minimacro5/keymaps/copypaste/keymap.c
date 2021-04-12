@@ -44,7 +44,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 //
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = { //buttion closest to usb is first
   [_MAIN] = LAYOUT_ortho_1x5(
-     LGUI(KC_V), LT(_UPDOWN,LGUI(KC_C)), KC_LSFT, LT(_DELETE,LGUI(KC_X)), KC_LOPT
+     LGUI(KC_C), LT(_UPDOWN,LGUI(KC_V)), KC_LSFT, LT(_DELETE,LGUI(KC_X)), KC_LOPT
   ),
   [_UPDOWN] = LAYOUT_ortho_1x5(
      KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, MO(_PAGEUPDOWN)
