@@ -24,6 +24,32 @@ enum layers {
 };
 
 
+void encoder_update_user(uint8_t index, bool clockwise) {
+   switch(biton32(layer_state)){
+             case _RSE:
+                if (clockwise) {
+                tap_code(KC_DELETE);
+                 } else {
+                tap_code(KC_BSPACE);
+                }  
+                break;            
+            case _LWR:
+                if (clockwise) {
+                tap_code(KC_DOWN);
+                } else {
+                tap_code(KC_UP);
+                }
+                break;
+            default:
+                if (clockwise) {
+                tap_code(KC_RIGHT);
+                } else {
+                tap_code(KC_LEFT);
+                }
+                break;
+      }
+  }
+
 float song_one[][2] = SONG(TERMINAL_SOUND);
 float song_two[][2] = SONG(CAPS_LOCK_OFF_SOUND);
 float song_base[][2] = SONG(NUM_LOCK_ON_SOUND);
@@ -63,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_Q,           KC_W,         KC_F,            KC_P,         KC_B,     KC_EQUAL,        KC_MINUS,     KC_J,           KC_L,                KC_U,         KC_Y,          KC_SCOLON, 
 		LT(1,KC_A),     LT(2,KC_R),   LGUI_T(KC_S),    LSFT_T(KC_T), KC_G,     KC_BSLASH,       KC_QUOTE,     KC_M,           RSFT_T(KC_N),        RGUI_T(KC_E), KC_I,          LT(1,KC_O),
 		KC_Z,           KC_X,         TD(DANCE_1),     KC_D,         KC_V,     TG(2),           TG(1),        KC_K,           KC_H,                KC_COMMA,     KC_DOT,        KC_SLASH, 
-		OSM(MOD_LGUI),  TD(DANCE_4),  KC_LBRACKET,     TD(DANCE_2),  KC_SPACE, LT(2,KC_DELETE), LT(1,KC_ENT), LALT(KC_BSPC),  TD(DANCE_3),         KC_RBRACKET,  OSM(MOD_LCTL), OSM(MOD_LALT)),
+		OSM(MOD_LALT),  TD(DANCE_4),  KC_LBRACKET,     TD(DANCE_2),  KC_SPACE, LT(2,KC_DELETE), LT(1,KC_ENT), LALT(KC_BSPC),  TD(DANCE_3),         KC_RBRACKET,  OSM(MOD_LCTL), OSM(MOD_LGUI)),
 	[_RSE] = LAYOUT_ortho_5x12(
 		KC_EXLM,        KC_AT,        KC_HASH,         KC_DLR,       KC_PERC,  KC_TAB,          KC_TRNS,      KC_CIRC,        KC_AMPR,             KC_ASTR,      KC_LPRN,       KC_RPRN, 
 		KC_TRNS,        KC_TRNS,      KC_LPRN,         KC_RPRN,      KC_TRNS,  KC_PLUS,         KC_UNDS,      KC_GRAVE,       KC_7,                KC_8,         KC_9,          KC_SCLN, 
