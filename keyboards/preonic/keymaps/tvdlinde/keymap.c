@@ -17,6 +17,13 @@
 #define BP_NDSH_MAC ALGR(KC_8)
 #define MOON_LED_LEVEL LED_LEVEL
 
+enum layers {
+     _MAIN,
+     _RSE,
+     _LWR,
+};
+
+
 float song_one[][2] = SONG(TERMINAL_SOUND);
 float song_two[][2] = SONG(CAPS_LOCK_OFF_SOUND);
 float song_base[][2] = SONG(NUM_LOCK_ON_SOUND);
@@ -25,11 +32,11 @@ uint32_t layer_state_set_user(uint32_t state) {
 #ifdef RGBLIGHT_ENABLE
 //#ifdef AUDIO_ENABLE
     switch (biton32(state)) {
-    case 1:
+    case _RSE:
       rgblight_setrgb(RGB_RED);
       //PLAY_SONG(song_one);
       break;
-    case 2:
+    case _LWR:
       rgblight_setrgb(RGB_GREEN);
       //PLAY_SONG(song_two);
       break;
@@ -51,19 +58,19 @@ enum tap_dance_codes {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-	[0] = LAYOUT_ortho_5x12(
+	[_MAIN] = LAYOUT_ortho_5x12(
 		KC_1,           KC_2,         KC_3,            KC_4,         KC_5,     KC_ESCAPE,       TD(DANCE_0),  KC_6,           KC_7,                KC_8,         KC_9,          KC_0,  
 		KC_Q,           KC_W,         KC_F,            KC_P,         KC_B,     KC_EQUAL,        KC_MINUS,     KC_J,           KC_L,                KC_U,         KC_Y,          KC_SCOLON, 
 		LT(1,KC_A),     LT(2,KC_R),   LGUI_T(KC_S),    LSFT_T(KC_T), KC_G,     KC_BSLASH,       KC_QUOTE,     KC_M,           RSFT_T(KC_N),        RGUI_T(KC_E), KC_I,          LT(1,KC_O),
 		KC_Z,           KC_X,         TD(DANCE_1),     KC_D,         KC_V,     TG(2),           TG(1),        KC_K,           KC_H,                KC_COMMA,     KC_DOT,        KC_SLASH, 
 		OSM(MOD_LGUI),  TD(DANCE_4),  KC_LBRACKET,     TD(DANCE_2),  KC_SPACE, LT(2,KC_DELETE), LT(1,KC_ENT), LALT(KC_BSPC),  TD(DANCE_3),         KC_RBRACKET,  OSM(MOD_LCTL), OSM(MOD_LALT)),
-	[1] = LAYOUT_ortho_5x12(
+	[_RSE] = LAYOUT_ortho_5x12(
 		KC_EXLM,        KC_AT,        KC_HASH,         KC_DLR,       KC_PERC,  KC_TAB,          KC_TRNS,      KC_CIRC,        KC_AMPR,             KC_ASTR,      KC_LPRN,       KC_RPRN, 
 		KC_TRNS,        KC_TRNS,      KC_LPRN,         KC_RPRN,      KC_TRNS,  KC_PLUS,         KC_UNDS,      KC_GRAVE,       KC_7,                KC_8,         KC_9,          KC_SCLN, 
 		KC_TRNS,        KC_BSLS,      KC_LCBR,         KC_RCBR,      KC_DLR,   KC_LCBR,         KC_RCBR,      KC_DLR,         KC_4,                KC_5,         KC_6,          KC_TRNS, 
 		KC_TRNS,        KC_TRNS,      KC_LBRC,         KC_RBRC,      KC_TRNS,  TO(0),           KC_TRNS,      KC_TRNS,        KC_1,                KC_2,         KC_3,          KC_TRNS, 
 		KC_TRNS,        KC_TRNS,    LALT(KC_BSLASH),   KC_TRNS,      KC_TRNS,  KC_DELETE,       KC_TRNS,      KC_BSPC,        KC_0,      LALT(LSFT(KC_BSLASH)),  KC_TRNS,       KC_TRNS),
-	[2] = LAYOUT_ortho_5x12(
+	[_LWR] = LAYOUT_ortho_5x12(
 		KC_TRNS,        KC_TRNS,      KC_TRNS,         KC_TRNS,      KC_TRNS,  KC_TAB,          KC_TRNS,      KC_TRNS,        KC_TRNS,             KC_PGUP,      KC_TRNS,       KC_TRNS,
 		KC_TRNS,        KC_TRNS,      KC_TRNS,         KC_TRNS,      KC_TRNS,  KC_TRNS,         KC_TRNS,      KC_HOME,        LALT(KC_LEFT),       KC_UP,        LALT(KC_RGHT), KC_END, 
 		KC_TRNS,        KC_TRNS,      KC_TRNS,         KC_TRNS,      KC_TRNS,  KC_TRNS,         KC_TRNS,      KC_DLR,         KC_LEFT,             KC_DOWN,      KC_RGHT,       KC_DLR, 
