@@ -38,6 +38,8 @@
 //#define MIDI_TONE_KEYCODE_OCTAVES 2
 
 
+#define PERMISSIVE_HOLD
+                                
 #define IGNORE_MOD_TAP_INTERRUPT
 
 #define TAPPING_TERM 250
