@@ -70,6 +70,10 @@ uint32_t layer_state_set_user(uint32_t state) {
       rgblight_setrgb(RGB_RED);
       //PLAY_SONG(song_one);
       break;
+    case _PGUPDN:
+      rgblight_setrgb(RGB_BLUE);
+      //PLAY_SONG(song_one);
+      break;
     case _LWR:
       rgblight_setrgb(RGB_GREEN);
       //PLAY_SONG(song_two);
@@ -96,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_1,           KC_2,           KC_3,            KC_4,         KC_5,     KC_ESCAPE,          TD(DANCE_0),       KC_6,           KC_7,                KC_8,         KC_9,          KC_0,  
 		KC_Q,           KC_W,           KC_F,            KC_P,         KC_B,     KC_EQUAL,           KC_MINUS,          KC_J,           KC_L,                KC_U,         KC_Y,          KC_SCOLON, 
 		LT(_RSE,KC_A),  LT(_LWR,KC_R),  LGUI_T(KC_S),    LSFT_T(KC_T), KC_G,     KC_BSLASH,          KC_QUOTE,          KC_M,           RSFT_T(KC_N),        RGUI_T(KC_E), KC_I,          LT(_RSE,KC_O),
-		KC_Z,           KC_X,           TD(DANCE_1),     KC_D,         KC_V,     LT(_LWR,TG(_LWR)),  LT(_RSE,TG(_RSE)), KC_K,           KC_H,                KC_COMMA,     KC_DOT,        KC_SLASH, 
+		KC_Z,           KC_X,           TD(DANCE_1),     KC_D,         KC_V,     TG(_LWR),           TG(_RSE),          KC_K,           KC_H,                KC_COMMA,     KC_DOT,        KC_SLASH, 
 		OSM(MOD_LALT),  TD(DANCE_4),    KC_LBRACKET,     TD(DANCE_2),  KC_SPACE, LT(_LWR,KC_DELETE), LT(_RSE,KC_ENT),   LALT(KC_BSPC),  TD(DANCE_3),         KC_RBRACKET,  OSM(MOD_LCTL), OSM(MOD_LGUI)),
 	[_RSE] = LAYOUT_ortho_5x12(
 		KC_EXLM,        KC_AT,          KC_HASH,         KC_DLR,       KC_PERC,  KC_TAB,             KC_TRNS,           KC_CIRC,        KC_AMPR,             KC_ASTR,      KC_LPRN,       KC_RPRN, 
