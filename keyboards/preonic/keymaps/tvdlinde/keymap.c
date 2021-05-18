@@ -98,11 +98,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,          KC_TRNS,          KC_TRNS,        KC_BSPACE,      KC_PGDOWN,    KC_DELETE,     KC_TRNS, 
        MO(_PGUPDN),    KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_BSPC,       KC_TRNS,          KC_TRNS,          KC_TRNS,        KC_TRNS,        TO(_MAIN),    KC_TRNS,       KC_TRNS),
     [_PGUPDN] = LAYOUT_ortho_5x12(
-        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,          RESET,            KC_TRNS,        KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS,
-        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,          KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS, 
-        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,          KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS,
-        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,          KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS, 
-        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,          KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS),
+       KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,          RESET,            KC_TRNS,        KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS,
+       KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,          KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS, 
+       KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,          KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS,
+       KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,          KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS, 
+       KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,          KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS),
 };
 
 typedef struct {
