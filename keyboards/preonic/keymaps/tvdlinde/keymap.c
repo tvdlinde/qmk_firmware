@@ -1,10 +1,10 @@
 #include QMK_KEYBOARD_H
 
 enum layers {
-     _MAIN,
-     _RSE,
-     _LWR,
-     _PGUPDN
+   _MAIN,
+   _RSE,
+   _LWR,
+   _PGUPDN
 };
 
 enum tap_dance_codes {
@@ -16,92 +16,93 @@ enum tap_dance_codes {
 };
 
 void encoder_update_user(uint8_t index, bool clockwise) {
-   switch(biton32(layer_state)){
-            case _RSE:
-                if (clockwise) {
-                tap_code(KC_DELETE);
-                 } else {
-                tap_code(KC_BSPACE);
-                }  
-                break;
-            case _PGUPDN:
-                if (clockwise) {
-                tap_code(KC_PGDOWN);
-                } else {
-                tap_code(KC_PGUP);
-                }
-                break;            
-            case _LWR:
-                if (clockwise) {
-                tap_code(KC_DOWN);
-                } else {
-                tap_code(KC_UP);
-                }
-                break;
-            default:
-                if (clockwise) {
-                tap_code(KC_RIGHT);
-                } else {
-                tap_code(KC_LEFT);
-                }
-                break;
-      }
-  }
+ switch(biton32(layer_state)){
+    case _RSE:
+    if (clockwise) {
+        tap_code(KC_DELETE);
+    } else {
+        tap_code(KC_BSPACE);
+    }  
+    break;
+    case _PGUPDN:
+    if (clockwise) {
+        tap_code(KC_PGDOWN);
+    } else {
+        tap_code(KC_PGUP);
+    }
+    break;            
+    case _LWR:
+    if (clockwise) {
+        tap_code(KC_DOWN);
+    } else {
+        tap_code(KC_UP);
+    }
+    break;
+    default:
+    if (clockwise) {
+        tap_code(KC_RIGHT);
+    } else {
+        tap_code(KC_LEFT);
+    }
+    break;
+}
+}
 
-float song_one[][2] = SONG(TERMINAL_SOUND);
-float song_two[][2] = SONG(CAPS_LOCK_OFF_SOUND);
-float song_base[][2] = SONG(NUM_LOCK_ON_SOUND);
+//float song_one[][2] = SONG(TERMINAL_SOUND);
+//float song_two[][2] = SONG(CAPS_LOCK_OFF_SOUND);
+//float song_base[][2] = SONG(NUM_LOCK_ON_SOUND);
 
 uint32_t layer_state_set_user(uint32_t state) {
 #ifdef RGBLIGHT_ENABLE
 //#ifdef AUDIO_ENABLE
     switch (biton32(state)) {
-    case _RSE:
-      rgblight_setrgb(RGB_BLUE);
+        case _RSE:
+        rgblight_setrgb(RGB_BLUE);
       //PLAY_SONG(song_one);
-      break;
-    case _PGUPDN:
-      rgblight_setrgb(RGB_RED);
+        break;
+        case _PGUPDN:
+        rgblight_setrgb(RGB_RED);
       //PLAY_SONG(song_one);
-      break;
-    case _LWR:
-      rgblight_setrgb(RGB_GREEN);
+        break;
+        case _LWR:
+        rgblight_setrgb(RGB_GREEN);
       //PLAY_SONG(song_two);
-      break;
-    default: //  for any other layers, or the default layer
-      rgblight_setrgb(RGB_OFF);
+        break;
+        default: //  for any other layers, or the default layer
+        rgblight_setrgb(RGB_OFF);
       //PLAY_SONG(song_base);
-      break;}
+        break;
+    }
 #endif
 //#endif
-  return state;
+    return state;
 }
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-	[_MAIN] = LAYOUT_ortho_5x12(  
-		KC_1,           KC_2,           KC_3,          KC_4,         KC_5,     TD(DANCE_0),            KC_ESCAPE,        KC_6,           KC_7,           KC_8,         KC_9,          KC_0,  
-		KC_Q,           KC_W,           KC_F,          KC_P,         KC_B,     KC_EQUAL,               KC_MINUS,         KC_J,           KC_L,           KC_U,         KC_Y,          KC_SCOLON, 
-		LT(_RSE,KC_A),  LT(_LWR,KC_R),  LGUI_T(KC_S),  LSFT_T(KC_T), KC_G,     KC_BSLASH,              KC_QUOTE,         KC_M,           RSFT_T(KC_N),   RGUI_T(KC_E), KC_I,          LT(_RSE,KC_O),
-		KC_Z,           KC_X,           TD(DANCE_1),   KC_D,         KC_V,     KC_LBRACKET,            KC_RBRACKET,      KC_K,           KC_H,           KC_COMMA,     KC_DOT,        KC_SLASH, 
-		OSM(MOD_LALT),  TD(DANCE_4),    TG(_LWR),      TD(DANCE_2),  LALT(KC_BSPC),  LT(_RSE,KC_ENT),  LT(_LWR,KC_TAB),  KC_SPACE,       TD(DANCE_3),    TG(_RSE),     OSM(MOD_LCTL), OSM(MOD_LGUI)),
-	[_RSE] = LAYOUT_ortho_5x12(
-		KC_EXLM,        KC_AT,          KC_HASH,       KC_DLR,       KC_PERC,  LSFT(KC_GRAVE),         KC_ESCAPE,        KC_CIRC,        KC_AMPR,        KC_ASTR,      KC_LPRN,       KC_RPRN, 
-		KC_TRNS,        KC_TRNS,        KC_LCBR,       KC_RCBR,      KC_TRNS,  KC_PLUS,                KC_UNDS,          KC_GRAVE,       KC_7,           KC_8,         KC_9,          KC_SCLN, 
-		KC_TRNS,        KC_MINUS,       KC_LPRN,       KC_RPRN,      KC_DLR,   KC_PIPE,                LALT(KC_LPRN),    KC_MINUS,       KC_4,           KC_5,         KC_6,          KC_TRNS, 
-		KC_TRNS,        KC_TRNS,        KC_LBRC,       KC_RBRC,      KC_TRNS,  LALT(KC_BSLASH),        LALT(KC_PIPE),    KC_TRNS,        KC_1,           KC_2,         KC_3,          KC_TRNS, 
-		KC_TRNS,        KC_TRNS,        TO(_MAIN),     KC_TRNS,      KC_BSPC,  KC_TRNS,                KC_DEL,           KC_TRNS,        KC_0,           KC_TRNS,      KC_TRNS,       KC_TRNS),
-	[_LWR] = LAYOUT_ortho_5x12(
-		KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,  KC_TRNS,                KC_ESCAPE,        KC_TRNS,        KC_HOME,        KC_PGUP,      KC_END,        KC_TRNS,
-		KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,  KC_TRNS,                KC_TRNS,          KC_TRNS,        LCTL(KC_LEFT),  KC_UP,        LCTL(KC_RGHT), KC_TRNS, 
-		KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,  KC_TRNS,                KC_TRNS,          LALT(KC_LEFT),  KC_LEFT,        KC_DOWN,      KC_RGHT,       LALT(KC_RGHT), 
-		KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,  KC_TRNS,                KC_TRNS,          KC_TRNS,        KC_BSPACE,      KC_PGDOWN,    KC_DELETE,     KC_TRNS, 
-		MO(_PGUPDN),    KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_BSPC,  KC_TRNS,                KC_TRNS,          KC_TRNS,        KC_TRNS,        TO(_MAIN),    KC_TRNS,       KC_TRNS),
+    [_MAIN] = LAYOUT_ortho_5x12(  
+       KC_1,           KC_2,           KC_3,          KC_4,         KC_5,          TD(DANCE_0),      KC_ESCAPE,        KC_6,           KC_7,           KC_8,         KC_9,          KC_0,  
+       KC_Q,           KC_W,           KC_F,          KC_P,         KC_B,          KC_EQUAL,         KC_MINUS,         KC_J,           KC_L,           KC_U,         KC_Y,          KC_SCOLON, 
+       LT(_RSE,KC_A),  LT(_LWR,KC_R),  LGUI_T(KC_S),  LSFT_T(KC_T), KC_G,          KC_BSLASH,        KC_QUOTE,         KC_M,           RSFT_T(KC_N),   RGUI_T(KC_E), KC_I,          LT(_RSE,KC_O),
+       KC_Z,           KC_X,           TD(DANCE_1),   KC_D,         KC_V,          KC_LBRACKET,      KC_RBRACKET,      KC_K,           KC_H,           KC_COMMA,     KC_DOT,        KC_SLASH, 
+       OSM(MOD_LALT),  TD(DANCE_4),    TG(_LWR),      TD(DANCE_2),  LALT(KC_BSPC), LT(_RSE,KC_ENT),  LT(_LWR,KC_TAB),  KC_SPACE,       TD(DANCE_3),    TG(_RSE),     OSM(MOD_LCTL), OSM(MOD_LGUI)),
+    [_RSE] = LAYOUT_ortho_5x12(
+       KC_EXLM,        KC_AT,          KC_HASH,       KC_DLR,       KC_PERC,       LSFT(KC_GRAVE),   KC_TRNS,          KC_CIRC,        KC_AMPR,        KC_ASTR,      KC_LPRN,       KC_RPRN, 
+       KC_TRNS,        KC_TRNS,        KC_LCBR,       KC_RCBR,      KC_TRNS,       KC_PLUS,          KC_UNDS,          KC_GRAVE,       KC_7,           KC_8,         KC_9,          KC_SCLN, 
+       KC_TRNS,        KC_MINUS,       KC_LPRN,       KC_RPRN,      KC_DLR,        KC_PIPE,          LALT(KC_LPRN),    KC_MINUS,       KC_4,           KC_5,         KC_6,          KC_TRNS, 
+       KC_TRNS,        KC_TRNS,        KC_LBRC,       KC_RBRC,      KC_TRNS,       LALT(KC_BSLASH),  LALT(KC_PIPE),    KC_TRNS,        KC_1,           KC_2,         KC_3,          KC_TRNS, 
+       KC_TRNS,        KC_TRNS,        TO(_MAIN),     KC_TRNS,      KC_BSPC,       KC_TRNS,          KC_DEL,           KC_TRNS,        KC_0,           KC_TRNS,      KC_TRNS,       KC_TRNS),
+    [_LWR] = LAYOUT_ortho_5x12(
+       KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,          KC_TRNS,          KC_TRNS,        KC_HOME,        KC_PGUP,      KC_END,        KC_TRNS,
+       KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,          KC_TRNS,          KC_TRNS,        LCTL(KC_LEFT),  KC_UP,        LCTL(KC_RGHT), KC_TRNS, 
+       KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,          KC_TRNS,          LALT(KC_LEFT),  KC_LEFT,        KC_DOWN,      KC_RGHT,       LALT(KC_RGHT), 
+       KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,          KC_TRNS,          KC_TRNS,        KC_BSPACE,      KC_PGDOWN,    KC_DELETE,     KC_TRNS, 
+       MO(_PGUPDN),    KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_BSPC,       KC_TRNS,          KC_TRNS,          KC_TRNS,        KC_TRNS,        TO(_MAIN),    KC_TRNS,       KC_TRNS),
     [_PGUPDN] = LAYOUT_ortho_5x12(
-        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,  KC_TRNS,                RESET,            KC_TRNS,        KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS,
-        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,  KC_TRNS,                KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS, 
-        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,  KC_TRNS,                KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS,
-        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,  KC_TRNS,                KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS, 
-        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,  KC_TRNS,                KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS),
+        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,          RESET,            KC_TRNS,        KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS,
+        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,          KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS, 
+        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,          KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS,
+        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,          KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS, 
+        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,          KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS),
 };
 
 typedef struct {
@@ -359,10 +360,10 @@ void dance_4_reset(qk_tap_dance_state_t *state, void *user_data) {
 }
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-        [DANCE_0] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_0, dance_0_finished, dance_0_reset),
-        [DANCE_1] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_1, dance_1_finished, dance_1_reset),
-        [DANCE_2] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_2, dance_2_finished, dance_2_reset),
-        [DANCE_3] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_3, dance_3_finished, dance_3_reset),
-        [DANCE_4] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_4, dance_4_finished, dance_4_reset),
+    [DANCE_0] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_0, dance_0_finished, dance_0_reset),
+    [DANCE_1] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_1, dance_1_finished, dance_1_reset),
+    [DANCE_2] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_2, dance_2_finished, dance_2_reset),
+    [DANCE_3] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_3, dance_3_finished, dance_3_reset),
+    [DANCE_4] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_4, dance_4_finished, dance_4_reset),
 };
 
