@@ -46,7 +46,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
     }
     break;
 }
-}
+};
 
 //float song_one[][2] = SONG(TERMINAL_SOUND);
 //float song_two[][2] = SONG(CAPS_LOCK_OFF_SOUND);
@@ -76,7 +76,7 @@ uint32_t layer_state_set_user(uint32_t state) {
 #endif
 //#endif
     return state;
-}
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MAIN] = LAYOUT_ortho_5x12(  
@@ -137,7 +137,7 @@ void on_dance_0(qk_tap_dance_state_t *state, void *user_data) {
     if(state->count > 3) {
         tap_code16(KC_GRAVE);
     }
-}
+};
 
 uint8_t dance_0_dance_step(qk_tap_dance_state_t *state) {
     if (state->count == 1) {
