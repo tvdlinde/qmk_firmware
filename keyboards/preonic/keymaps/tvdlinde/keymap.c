@@ -6,7 +6,7 @@ enum layers {
    _MAIN,
    _RSE,
    _LWR,
-   _PGUPDN
+   _MEH
 };
 
 enum tap_dance_codes {
@@ -26,7 +26,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         tap_code(KC_BSPACE);
     }  
     break;
-    case _PGUPDN:
+    case _MEH:
     if (clockwise) {
         tap_code(KC_PGDOWN);
     } else {
@@ -63,7 +63,7 @@ uint32_t layer_state_set_user(uint32_t state) {
         rgblight_setrgb(RGB_BLUE);
       //PLAY_SONG(song_one);
         break;
-        case _PGUPDN:
+        case _MEH:
         rgblight_setrgb(RGB_RED);
       //PLAY_SONG(song_one);
         break;
@@ -87,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_Q,           KC_W,           KC_F,          KC_P,         KC_B,          KC_EQUAL,           KC_MINUS,           KC_J,           KC_L,           KC_U,         KC_Y,          KC_SCOLON, 
        LT(_RSE,KC_A),  LT(_LWR,KC_R),  LGUI_T(KC_S),  LSFT_T(KC_T), KC_G,          TD(DANCE_4),        KC_QUOTE,           KC_M,           RSFT_T(KC_N),   RGUI_T(KC_E), KC_I,          LT(_RSE,KC_O),
        KC_Z,           KC_X,           TD(DANCE_1),   KC_D,         KC_V,          KC_LBRACKET,        KC_RBRACKET,        KC_K,           KC_H,           KC_COMMA,     KC_DOT,        KC_SLASH, 
-       LALT_T(KC_F3),  OSM(MOD_LALT),  TG(_LWR),      TD(DANCE_2),  LALT(KC_BSPC), LT(_PGUPDN,KC_ENT), LT(_PGUPDN,KC_TAB), KC_SPACE,       TD(DANCE_3),    TG(_RSE),     OSM(MOD_LCTL), OSM(MOD_LGUI)),
+       LALT_T(KC_F3),  OSM(MOD_LALT),  TG(_LWR),      TD(DANCE_2),  LALT(KC_BSPC), LT(_MEH,KC_ENT), LT(_MEH,KC_TAB), KC_SPACE,       TD(DANCE_3),    TG(_RSE),     OSM(MOD_LCTL), OSM(MOD_LGUI)),
     [_RSE] = LAYOUT_ortho_5x12(
        KC_EXLM,        KC_AT,          KC_HASH,       KC_DLR,       KC_PERC,       LSFT(KC_GRAVE),     KC_TRNS,            KC_CIRC,        KC_AMPR,        KC_ASTR,      KC_LPRN,       KC_RPRN, 
        KC_TRNS,        KC_TRNS,        KC_LCBR,       KC_RCBR,      KC_TRNS,       KC_PLUS,            KC_UNDS,            KC_GRAVE,       KC_7,           KC_8,         KC_9,          KC_SCLN, 
@@ -99,8 +99,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,            KC_TRNS,            KC_TRNS,        LCTL(KC_LEFT),  KC_UP,        LCTL(KC_RGHT), KC_TRNS, 
        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,            KC_TRNS,            LALT(KC_LEFT),  KC_LEFT,        KC_DOWN,      KC_RGHT,       LALT(KC_RGHT), 
        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,            KC_TRNS,            KC_TRNS,        KC_BSPACE,      KC_PGDOWN,    KC_DELETE,     KC_TRNS, 
-       MO(_PGUPDN),    KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_BSPC,       KC_TRNS,            KC_TRNS,            KC_TRNS,        KC_TRNS,        TO(_MAIN),    KC_TRNS,       KC_TRNS),
-    [_PGUPDN] = LAYOUT_ortho_5x12(
+       MO(_MEH),    KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_BSPC,       KC_TRNS,            KC_TRNS,            KC_TRNS,        KC_TRNS,        TO(_MAIN),    KC_TRNS,       KC_TRNS),
+    [_MEH] = LAYOUT_ortho_5x12(
        MEH(KC_1),      MEH(KC_2),      MEH(KC_3),     MEH(KC_4),    MEH(KC_5),     KC_TRNS,            RESET,              MEH(KC_6),      MEH(KC_7),      MEH(KC_8),    MEH(KC_9),     MEH(KC_0),
        KC_TRNS,        MEH(KC_F),      MEH(KC_P),     MEH(KC_B),    KC_TRNS,       KC_TRNS,            KC_TRNS,            KC_TRNS,        MEH(KC_L),      MEH(KC_U),    MEH(KC_Y),     KC_TRNS,
        MEH(KC_A),      MEH(KC_R),      MEH(KC_S),     LCA(KC_T),    MEH(KC_G),     KC_TRNS,            KC_TRNS,            MEH(KC_M),      MEH(KC_N),      MEH(KC_E),    LCA(KC_I),     MEH(KC_O),
