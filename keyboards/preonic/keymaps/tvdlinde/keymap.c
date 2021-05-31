@@ -15,7 +15,7 @@ enum tap_dance_codes {
   DANCE_4,
 };
 
-void encoder_update_user(uint8_t index, bool clockwise) {
+bool encoder_update_user(uint8_t index, bool clockwise) {
  switch(biton32(layer_state)){
     case _RSE:
     if (clockwise) {
