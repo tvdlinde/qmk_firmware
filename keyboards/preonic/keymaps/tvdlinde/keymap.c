@@ -42,9 +42,9 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     break;
     default:
     if (clockwise) {
-        tap_code(KC_RIGHT);
+        tap_code16(MEH(KC_O));
     } else {
-        tap_code(KC_LEFT);
+        tap_code16(MEH(KC_M));
     }
     break;
 }
@@ -101,7 +101,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,            KC_TRNS,            KC_TRNS,        KC_BSPACE,      KC_PGDOWN,    KC_DELETE,     KC_TRNS, 
        MO(_MEH),    KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_BSPC,       KC_TRNS,            KC_TRNS,            KC_TRNS,        KC_TRNS,        TO(_MAIN),    KC_TRNS,       KC_TRNS),
     [_MEH] = LAYOUT_ortho_5x12(
-       MEH(KC_1),      MEH(KC_2),      MEH(KC_3),     MEH(KC_4),    MEH(KC_5),     KC_TRNS,            RESET,              MEH(KC_6),      MEH(KC_7),      MEH(KC_8),    MEH(KC_9),     MEH(KC_0),
+       MEH(KC_F1),      MEH(KC_F2),      MEH(KC_F3),     MEH(KC_F4),    MEH(KC_F5),     KC_TRNS,            RESET,              MEH(KC_F6),      MEH(KC_F7),      MEH(KC_F8),    MEH(KC_F9),     MEH(KC_F10),
        KC_TRNS,        MEH(KC_F),      MEH(KC_P),     MEH(KC_B),    KC_TRNS,       KC_TRNS,            KC_TRNS,            KC_TRNS,        MEH(KC_L),      MEH(KC_U),    MEH(KC_Y),     KC_TRNS,
        MEH(KC_A),      MEH(KC_R),      MEH(KC_S),     LCA(KC_T),    MEH(KC_G),     KC_TRNS,            KC_TRNS,            MEH(KC_M),      MEH(KC_N),      MEH(KC_E),    LCA(KC_I),     MEH(KC_O),
        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,       KC_TRNS,            KC_TRNS,            KC_TRNS,        KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS, 
