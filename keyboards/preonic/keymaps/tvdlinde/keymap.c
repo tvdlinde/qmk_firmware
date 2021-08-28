@@ -89,23 +89,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_Z,           KC_X,           TD(DANCE_1),   KC_D,         KC_V,            KC_LBRACKET,        KC_RBRACKET,        KC_K,             KC_H,           KC_COMMA,     KC_DOT,        KC_SLASH, 
        LALT_T(KC_F3),  OSM(MOD_LALT),  TG(_LWR),      TD(DANCE_2),  LGUI_T(KC_BSPC), LT(_MEH,KC_ENT),    LT(_MEH,KC_F12),    LGUI_T(KC_SPACE), TD(DANCE_3),    TG(_RSE),     OSM(MOD_LCTL), KC_QUOTE),
     [_RSE] = LAYOUT_ortho_5x12(
-       KC_EXLM,        KC_AT,          KC_HASH,       KC_DLR,       KC_PERC,         LSFT(KC_GRAVE),     KC_TRNS,            KC_CIRC,          KC_AMPR,        KC_ASTR,      KC_LPRN,       KC_RPRN, 
+       KC_F1,          KC_F2,          KC_F3,         KC_F4,        KC_F5,           LSFT(KC_GRAVE),     KC_TRNS,            KC_F6,            KC_F7,          KC_F8,        KC_F9,         KC_F10, 
        KC_TRNS,        KC_TRNS,        KC_LCBR,       KC_RCBR,      KC_TRNS,         KC_PLUS,            KC_UNDS,            KC_GRAVE,         KC_7,           KC_8,         KC_9,          KC_SCLN, 
        KC_TRNS,        KC_MINUS,       KC_LPRN,       KC_RPRN,      KC_DLR,          KC_PIPE,            LALT(KC_LPRN),      KC_MINUS,         KC_4,           KC_5,         KC_6,          KC_TRNS, 
        KC_TRNS,        KC_TRNS,        KC_LBRC,       KC_RBRC,      KC_TRNS,         LALT(KC_BSLASH),    LALT(KC_PIPE),      KC_TRNS,          KC_1,           KC_2,         KC_3,          KC_TRNS, 
        KC_TRNS,        KC_TRNS,        TO(_MAIN),     KC_TRNS,      LALT(KC_BSPC),   KC_TRNS,            KC_DEL,             KC_TRNS,          KC_0,           KC_TRNS,      KC_TRNS,       KC_TRNS),
     [_LWR] = LAYOUT_ortho_5x12(
-       KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,         KC_TRNS,            KC_TRNS,            KC_TRNS,          KC_HOME,        KC_PGUP,      KC_END,        KC_TRNS,
+       KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,         KC_TRNS,            RESET,              KC_TRNS,          KC_HOME,        KC_PGUP,      KC_END,        KC_TRNS,
        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,         KC_TRNS,            KC_TRNS,            KC_TRNS,          LCTL(KC_LEFT),  KC_UP,        LCTL(KC_RGHT), KC_TRNS, 
        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,         KC_TRNS,            KC_TRNS,            LALT(KC_LEFT),    KC_LEFT,        KC_DOWN,      KC_RGHT,       LALT(KC_RGHT), 
        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,         KC_TRNS,            KC_TRNS,            KC_TRNS,          KC_BSPACE,      KC_PGDOWN,    KC_DELETE,     KC_TRNS, 
        MO(_MEH),       KC_TRNS,        KC_TRNS,       KC_TRNS,      LALT(KC_BSPC),   KC_TRNS,            KC_TRNS,            KC_TRNS,          KC_TRNS,        TO(_MAIN),    KC_TRNS,       KC_TRNS),
     [_MEH] = LAYOUT_ortho_5x12(
-       MEH(KC_F1),     MEH(KC_F2),     MEH(KC_F3),    MEH(KC_F4),   MEH(KC_F5),      KC_TRNS,            RESET,              MEH(KC_F6),       MEH(KC_F7),     MEH(KC_F8),   MEH(KC_F9),    MEH(KC_F10),
+       MEH(KC_F1),     MEH(KC_F2),     MEH(KC_F3),    MEH(KC_F4),   MEH(KC_F5),      MEH(KC_F12),        MEH(KC_ESCAPE),     MEH(KC_F6),       MEH(KC_F7),     MEH(KC_F8),   MEH(KC_F9),    MEH(KC_F10),
        KC_TRNS,        MEH(KC_W),      MEH(KC_F),     MEH(KC_P),    KC_TRNS,         KC_TRNS,            KC_TRNS,            KC_TRNS,          MEH(KC_L),      MEH(KC_U),    MEH(KC_Y),     KC_TRNS,
-       MEH(KC_A),      MEH(KC_R),      MEH(KC_S),     LCA(KC_T),    MEH(KC_G),       KC_TRNS,            KC_TRNS,            MEH(KC_M),        MEH(KC_N),      MEH(KC_E),    LCA(KC_I),     MEH(KC_O),
-       KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,         KC_TRNS,            KC_TRNS,            KC_TRNS,          KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS, 
-       KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,         KC_TRNS,            KC_TRNS,            KC_TRNS,          KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS),
+       MEH(KC_A),      MEH(KC_R),      MEH(KC_S),     LCA(KC_T),    MEH(KC_G),       MEH(KC_ENT),        MEH(KC_TAB),        MEH(KC_M),        MEH(KC_N),      MEH(KC_E),    LCA(KC_I),     MEH(KC_O),
+       KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,         MEH(KC_LEFT),       LCTL(KC_RGHT),      KC_TRNS,          KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS, 
+       KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      MEH(KC_UP),      KC_TRNS,            KC_TRNS,            MEH(KC_DOWN),     KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS),
 };
 
 typedef struct {
