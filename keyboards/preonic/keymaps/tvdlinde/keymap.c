@@ -95,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        MEH(KC_DEL),    MEH(KC_W),      MEH(KC_F),     MEH(KC_P),    KC_TRNS,         KC_TRNS,            KC_TRNS,            KC_TRNS,          MEH(KC_L),      MEH(KC_U),    MEH(KC_Y),     KC_TRNS,
        MEH(KC_A),      MEH(KC_R),      MEH(KC_S),     LCA(KC_T),    MEH(KC_G),       MEH(KC_ESCAPE),     MEH(KC_TAB),        MEH(KC_M),        MEH(KC_N),      MEH(KC_E),    LCA(KC_I),     MEH(KC_O),
        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,         KC_TRNS,            KC_TRNS,            KC_TRNS,          KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS, 
-       KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      MEH(KC_UP),      MEH(KC_ENT),        MEH(KC_F12),        MEH(KC_DOWN),     KC_TRNS,        KC_TRNS,      KC_TRNS,       KC_TRNS),
+       KC_TRNS,        KC_TRNS,        KC_TRNS,       MEH(KC_UP),   MOD_LGUI,        MEH(KC_ENT),        MEH(KC_F12),        MOD_LGUI,         MEH(KC_DOWN),   KC_TRNS,      KC_TRNS,       KC_TRNS),
 };
 
 typedef struct {
@@ -369,4 +369,3 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [DANCE_3] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_3, dance_3_finished, dance_3_reset),
     [DANCE_4] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_4, dance_4_finished, dance_4_reset),
 };
-
