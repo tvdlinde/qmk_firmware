@@ -28,16 +28,16 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     break;
     case _MEH:
     if (clockwise) {
-        tap_code(KC_PGDOWN);
+        tap_code16(MEH(KC_G));
     } else {
-        tap_code(KC_PGUP);
+        tap_code16(MEH(KC_A));
     }
     break;            
     case _LWR:
     if (clockwise) {
-        tap_code(KC_DOWN);
+        tap_code16(LALT(KC_RGHT));
     } else {
-        tap_code(KC_UP);
+        tap_code16(LALT(KC_LEFT));
     }
     break;
     default:
@@ -88,8 +88,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,         KC_TRNS,            KC_TRNS,            KC_TRNS,          KC_HOME,        KC_PGUP,      KC_END,        KC_TRNS,
        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,         KC_TRNS,            KC_TRNS,            KC_TRNS,          LCTL(KC_LEFT),  KC_UP,        LCTL(KC_RGHT), KC_TRNS, 
        KC_TRNS,        KC_TRNS,        LALT_T(KC_S),  KC_TRNS,      KC_TRNS,         KC_TRNS,            KC_TRNS,            LALT(KC_LEFT),    KC_LEFT,        KC_DOWN,      KC_RGHT,       LALT(KC_RGHT), 
-       KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,         KC_TRNS,            RESET,              KC_TRNS,          KC_BSPACE,      KC_PGDOWN,    KC_DELETE,     KC_TRNS, 
-       KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      LALT(KC_BSPC),   KC_TRNS,            KC_TRNS,            KC_TRNS,          KC_TRNS,        TO(_MAIN),    KC_TRNS,       KC_TRNS),
+       KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,         KC_TRNS,            KC_TRNS,            KC_TRNS,          KC_BSPACE,      KC_PGDOWN,    KC_DELETE,     KC_TRNS, 
+       RESET,          KC_TRNS,        KC_TRNS,       KC_TRNS,      LALT(KC_BSPC),   KC_TRNS,            KC_TRNS,            KC_TRNS,          KC_TRNS,        TO(_MAIN),    KC_TRNS,       KC_TRNS),
     [_MEH] = LAYOUT_ortho_5x12(
        MEH(KC_F1),     MEH(KC_F2),     MEH(KC_F3),    MEH(KC_F4),   MEH(KC_F5),      MEH(KC_RGHT),       LCTL(KC_LEFT),      MEH(KC_F6),       MEH(KC_F7),     MEH(KC_F8),   MEH(KC_F9),    MEH(KC_F10),
        MEH(KC_DEL),    MEH(KC_W),      MEH(KC_F),     MEH(KC_P),    KC_TRNS,         KC_TRNS,            KC_TRNS,            KC_TRNS,          MEH(KC_L),      MEH(KC_U),    MEH(KC_Y),     KC_TRNS,
