@@ -35,16 +35,16 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     break;            
     case _LWR:
     if (clockwise) {
-        tap_code16(LCTL(LSFT(KC_MINUS)));
+        tap_code16(LCTL(LSFT(KC_RGHT)));
     } else {
-        tap_code16(LCTL(KC_MINUS));
+        tap_code16(LCTL(LSFT(KC_LEFT)));
     }
     break;
     default:
     if (clockwise) {
-        tap_code16(MEH(KC_O));
+        tap_code16(LCTL(LSFT(KC_MINUS)));
     } else {
-        tap_code16(MEH(KC_M));
+        tap_code16(LCTL(KC_MINUS));
     }
     break;
 }
