@@ -21,10 +21,10 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
  switch(biton32(layer_state)){
     case _RSE:
     if (clockwise) {
-        tap_code16(LGUI(LSFT(KC_Z)));
+        tap_code16(LCTL(LSFT(KC_RGHT)));
     } else {
-        tap_code16(LGUI(KC_Z));
-    }  
+        tap_code16(LCTL(LSFT(KC_LEFT)));
+    }
     break;
     case _MEH:
     if (clockwise) {
@@ -35,17 +35,17 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     break;            
     case _LWR:
     if (clockwise) {
-        tap_code16(LCTL(LSFT(KC_RGHT)));
-    } else {
-        tap_code16(LCTL(LSFT(KC_LEFT)));
-    }
-    break;
-    default:
-    if (clockwise) {
         tap_code16(LCTL(LSFT(KC_MINUS)));
     } else {
         tap_code16(LCTL(KC_MINUS));
     }
+    break;
+    default:
+    if (clockwise) {
+        tap_code16(KC_DEL);
+    } else {
+        tap_code16(LGUI(KC_Z));
+    }  
     break;
 }
 return true;
