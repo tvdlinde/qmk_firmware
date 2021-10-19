@@ -81,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_RSE] = LAYOUT_ortho_5x12(
        KC_F1,          KC_F2,          KC_F3,         KC_F4,        KC_F5,           LALT(KC_BSLASH),    LALT(KC_PIPE),      KC_F6,            KC_F7,          KC_F8,        KC_F9,         KC_F10, 
        KC_TRNS,        KC_TRNS,        KC_LCBR,       KC_RCBR,      KC_TRNS,         KC_PPLS,            KC_UNDS,            KC_GRAVE,         KC_P7,          KC_P8,        KC_P9,         KC_BSLASH, 
-       KC_TRNS,        KC_MINUS,       KC_LPRN,       KC_RPRN,      KC_DLR,          LALT(LSFT(KC_9)),   LALT(KC_LPRN),      KC_MINUS,         KC_P4,          KC_P5,        KC_P6,         KC_TRNS, 
+       KC_TRNS,        KC_MINUS,       KC_LPRN,       KC_RPRN,      KC_DLR,          LALT(LSFT(KC_9)),   LALT(KC_LPRN),      KC_MINUS,         KC_P4,          KC_P5,        KC_P6,         LT(_RSE,KC_QUOTE), 
        KC_TRNS,        KC_TRNS,        KC_LBRC,       KC_RBRC,      KC_TRNS,         LSFT(KC_GRAVE),     KC_ESCAPE,          KC_TRNS,          KC_P1,          KC_P2,        KC_P3,         KC_TRNS, 
        KC_TRNS,        KC_TRNS,        TO(_MAIN),     KC_TRNS,      LALT(KC_BSPC),   KC_TRNS,            KC_TRNS,            KC_PENT,          KC_P0,          KC_TRNS,      KC_PDOT,       KC_TRNS),
     [_LWR] = LAYOUT_ortho_5x12(
