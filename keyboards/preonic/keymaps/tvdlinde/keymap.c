@@ -95,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        MEH(KC_DEL),    MEH(KC_W),      MEH(KC_F),     MEH(KC_P),    KC_TRNS,         KC_TRNS,            KC_TRNS,            KC_TRNS,          MEH(KC_L),      MEH(KC_U),     MEH(KC_Y),     KC_TRNS,
        MEH(KC_A),      MEH(KC_R),      MEH(KC_S),     LCA(KC_T),    MEH(KC_G),       KC_TRNS,            MEH(KC_TAB),        MEH(KC_M),        MEH(KC_N),      MEH(KC_E),     LCA(KC_I),     MEH(KC_O),
        KC_TRNS,        KC_TRNS,        KC_TRNS,       KC_TRNS,      KC_TRNS,         KC_TRNS,            KC_TRNS,            KC_TRNS,          KC_TRNS,        KC_TRNS,       KC_TRNS,       KC_TRNS, 
-       MEH(KC_ESCAPE), KC_TRNS,        KC_TRNS,       MEH(KC_UP),   KC_LGUI,         MEH(KC_ENT),        KC_TRNS,            KC_LGUI,          MEH(KC_DOWN),   KC_TRNS,       KC_TRNS,       MEH(KC_F12)),
+       MEH(KC_ESCAPE), KC_TRNS,        KC_TRNS,       MEH(KC_UP),   KC_LGUI,         MEH(KC_ENT),        MEH(KC_F12),        KC_LGUI,          MEH(KC_DOWN),   KC_TRNS,       KC_TRNS,       MEH(KC_F12)),
 };
 
 typedef struct {
