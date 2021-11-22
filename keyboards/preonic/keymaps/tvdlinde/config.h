@@ -40,12 +40,9 @@
 
 #define PERMISSIVE_HOLD
 
-#define IGNORE_MOD_TAP_INTERRUPT
-
-#define TAPPING_TERM 250
+#define TAPPING_TERM 200
 
 #define NO_AUTO_SHIFT_ALPHA
-
                                 
 #define ENCODERS_PAD_A { B12 }
 #define ENCODERS_PAD_B { B13 }
