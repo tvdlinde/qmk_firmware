@@ -86,9 +86,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        LALT(LSFT(KC_9)),    KC_TRNS,     KC_TRNS,       LALT(KC_BSLASH), LALT(KC_PIPE), LT(_MEH,KC_SPACE),    KC_TRNS,           KC_TRNS,          KC_P0,          KC_BSPC,        KC_PDOT,        KC_TRNS),
     [_GRN] = LAYOUT_ortho_5x12(
        KC_TRNS,             KC_TRNS,     KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,              KC_TRNS,           KC_TRNS,          KC_HOME,        KC_PGUP,        KC_END,         KC_TRNS,
-       KC_TRNS,             KC_TRNS,     KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,              KC_TRNS,           KC_TRNS,          LCTL(KC_LEFT),  KC_UP,          LCTL(KC_RGHT),  KC_TRNS, 
-       KC_TRNS,             KC_TRNS,     KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,              KC_TRNS,           LALT(KC_LEFT),    KC_LEFT,        KC_DOWN,        KC_RGHT,        LALT(KC_RGHT), 
-       KC_TRNS,             KC_TRNS,     KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,              KC_TRNS,           LALT(KC_BSPC),    KC_BSPACE,      KC_PGDOWN,      KC_DELETE,      LALT(KC_DEL), 
+       KC_TRNS,             KC_TRNS,     KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,              KC_TRNS,           LCTL(KC_LEFT),    KC_UP,          LCTL(KC_RGHT),  KC_TRNS,        KC_TRNS,
+       KC_TRNS,             KC_TRNS,     KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,              LALT(KC_LEFT),     KC_LEFT,          KC_DOWN,        KC_RGHT,        LALT(KC_RGHT),  KC_TRNS,
+       KC_TRNS,             KC_TRNS,     KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,              LALT(KC_BSPC),     KC_BSPACE,        KC_PGDOWN,      KC_DELETE,      LALT(KC_DEL),   KC_TRNS,
        RESET,               KC_TRNS,     KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,              LT(_MEH,KC_SPACE), KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,        KC_TRNS),
     [_MEH] = LAYOUT_ortho_5x12(
        KC_TRNS,             MEH(KC_F1),  MEH(KC_F2),    MEH(KC_F3),      MEH(KC_F4),    MEH(KC_F5),           MEH(KC_F6),        MEH(KC_F7),       MEH(KC_F8),     MEH(KC_F9),     MEH(KC_F10),    MEH(KC_ESCAPE),
