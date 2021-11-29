@@ -73,13 +73,13 @@ uint32_t layer_state_set_user(uint32_t state) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MAIN] = LAYOUT_ortho_5x12(  
-       KC_1,           KC_2,           KC_3,          KC_4,         KC_5,            KC_LBRACKET,        KC_RBRACKET,        KC_6,             KC_7,           KC_8,          KC_9,          KC_0,  
-       KC_Q,           KC_W,           KC_F,          KC_P,         KC_B,            KC_EQUAL,           KC_MINUS,           KC_J,             KC_L,           KC_U,          KC_Y,          KC_SCOLON, 
-       KC_A,           KC_R,           KC_S,          KC_T,         KC_G,            KC_BSLASH,          TD(DANCE_0),        KC_M,             KC_N,           KC_E,          KC_I,          KC_O,
-       KC_Z,           KC_X,           TD(DANCE_1),   KC_D,         KC_V,            LT(_MEH,KC_GRAVE),  LT(_MEH,KC_ESCAPE), KC_K,             KC_H,           KC_COMMA,      KC_DOT,        KC_SLASH, 
-       LGUI_T(KC_F3),  OSM(MOD_LALT),  OSM(MOD_LGUI), TD(DANCE_2),  LSFT_T(KC_BSPC), LT(_GRN,KC_ENT),    LT(_BLU,KC_QUOTE),  LSFT_T(KC_SPACE), TD(DANCE_3),    OSM(MOD_LGUI), OSM(MOD_LCTL), LGUI_T(KC_F12)),
+       KC_GRAVE,       KC_1,           KC_2,          KC_3,         KC_4,         KC_5,                    KC_6,             KC_7,               KC_8,           KC_9,           KC_0,  
+       LALT(KC_DEL),   KC_Q,           KC_W,          KC_F,         KC_P,         KC_B,            KC_EQUAL,           KC_MINUS,           KC_J,             KC_L,           KC_U,          KC_Y,          KC_SCOLON, 
+       LALT(KC_BSPC),  KC_A,           KC_R,           KC_S,          KC_T,         KC_G,            KC_BSLASH,          TD(DANCE_0),        KC_M,             KC_N,           KC_E,          KC_I,          KC_O,
+       KC_Z,           KC_X,           TD(DANCE_1),   KC_D,         KC_V,            LT(_MEH,),  LT(_MEH,KC_ESCAPE), KC_K,             KC_H,           KC_COMMA,      KC_DOT,        KC_SLASH, 
+       KC_TAB,         MOD_LGUI,       OSM(MOD_LCTL), KC_EQUAL,     TD(DANCE_2),  LT(_GRN,KC_SPACE),       TD(DANCE_3),      KC_MINUS,           OSM(MOD_RALT),  RGUI_T(KC_F12), KC_ENTER),
     [_BLU] = LAYOUT_ortho_5x12(
-       KC_F1,          KC_F2,          KC_F3,         KC_F4,        KC_F5,           LALT(KC_BSLASH),    LALT(KC_PIPE),      KC_F6,            KC_F7,          KC_F8,         KC_F9,         KC_F10, 
+       KC_TRNS,        KC_F1,          KC_F2,          KC_F3,         KC_F4,        KC_F5,           LALT(KC_BSLASH),    LALT(KC_PIPE),      KC_F6,            KC_F7,          KC_F8,         KC_F9,         KC_F10, 
        KC_TRNS,        KC_TRNS,        KC_LCBR,       KC_RCBR,      KC_TRNS,         KC_PPLS,            KC_UNDS,            KC_GRAVE,         KC_P7,          KC_P8,         KC_P9,         KC_BSLASH, 
        KC_TRNS,        KC_MINUS,       KC_LPRN,       KC_RPRN,      KC_DLR,          LALT(LSFT(KC_9)),   LALT(KC_LPRN),      KC_MINUS,         KC_P4,          KC_P5,         KC_P6,         KC_QUOTE, 
        KC_TRNS,        KC_TRNS,        KC_LBRC,       KC_RBRC,      KC_TRNS,         LSFT(KC_GRAVE),     KC_ESCAPE,          KC_TRNS,          KC_P1,          KC_P2,         KC_P3,         KC_TRNS, 
