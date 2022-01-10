@@ -1,6 +1,5 @@
 /*
-Copyright 2012 Jun Wako <wakojun@gmail.com>
-Copyright 2015 Jack Humbert
+Copyright 2021 DmNosachev
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,13 +19,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "config_common.h"
 
-#define PRODUCT_ID  0x3636
-#define DEVICE_VER  0x0001
-#define PRODUCT     "Dactyl-Manuform (6x6)"
+#undef DEVICE_VER
 
-/* USB Device descriptor parameter */
+#define DEVICE_VER 0x0001
 
-/* key matrix size */
-// Rows are doubled-up
-#define MATRIX_ROWS 14
-#define MATRIX_COLS 6
+#define MATRIX_ROW_PINS { A5, B3, A9, A10, B13, B14, B15, A8, B7, B8, B9, C13, A15, A0, A1 }
+#define MATRIX_COL_PINS { A4, A3, B11, B10, B1, B0, A7, A6 }
+
+
+#define LED_KANA_PIN A2
+#define LED_CAPS_LOCK_PIN B5
+#define LED_CTRL_XFER_PIN B6
+#define LED_NUM_LOCK_PIN B4
+#define LED_KB_LOCK_PIN B12
+#define LED_PIN_ON_STATE 0
+
