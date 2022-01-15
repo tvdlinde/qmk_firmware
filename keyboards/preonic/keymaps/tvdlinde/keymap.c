@@ -28,9 +28,9 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     break;
     case _MEH:
     if (clockwise) {
-        tap_code16(MEH(KC_G));
+        tap_code16(KC_G);
     } else {
-        tap_code16(MEH(KC_A));
+        tap_code16(KC_A);
     }
     break;            
     case _GRN:
@@ -86,10 +86,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_F3,               KC_TRNS,             KC_TRNS,       LALT(KC_BSLASH), LALT(KC_PIPE), LM(_MEH,MOD_MEH),  KC_TRNS,           KC_TRNS,          KC_P0,          KC_BSPC,        KC_PDOT,             KC_TRNS),
     [_GRN] = LAYOUT_ortho_5x12(
        KC_TRNS,             KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           KC_TRNS,           KC_TRNS,          KC_HOME,        KC_PGUP,        KC_END,              KC_EQUAL,
-       KC_TRNS,             KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           KC_TRNS,           LCTL(KC_LEFT),    KC_UP,          LCTL(KC_RGHT),  KC_TRNS,             KC_TRNS,
+       KC_TRNS,             KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           KC_TRNS,           LCTL(KC_LEFT),    KC_UP,          LCTL(KC_RGHT),  KC_TRNS,             LGUI(LSFT(KC_BSLASH)),
        KC_TRNS,             KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           LALT(KC_LEFT),     KC_LEFT,          KC_DOWN,        KC_RGHT,        LALT(KC_RGHT),       KC_TRNS,
        KC_TRNS,             KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           LALT(KC_BSPC),     KC_BSPACE,        KC_PGDOWN,      KC_DELETE,      LALT(KC_DEL),        KC_TRNS,
-       KC_F3,               KC_TRNS,             RESET,         KC_TRNS,         KC_TRNS,       KC_TRNS,           LM(_MEH,MOD_MEH),  KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,             KC_TRNS),
+       LGUI(LSFT(KC_V)),    KC_TRNS,             RESET,         KC_TRNS,         KC_TRNS,       KC_TRNS,           LM(_MEH,MOD_MEH),  KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,             KC_TRNS),
     [_MEH] = LAYOUT_ortho_5x12(
        KC_TRNS,             KC_F1,               KC_F2,         KC_F3,           KC_F4,         KC_F5,             KC_F6,             KC_F7,            KC_F8,          KC_F9,          KC_F10,              KC_F16,
        KC_TAB,              KC_TRNS,             KC_W,          KC_F,            KC_P,          KC_TRNS,           KC_TRNS,           KC_L,             KC_U,           KC_Y,           KC_TRNS,             KC_TRNS,
