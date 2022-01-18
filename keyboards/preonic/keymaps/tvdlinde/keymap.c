@@ -35,9 +35,9 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     break;            
     case _GRN:
     if (clockwise) {
-        tap_code16(LCTL(LSFT(KC_MINUS)));
+        tap_code16(LGUI(KC_D));
     } else {
-        tap_code16(LCTL(KC_MINUS));
+        tap_code16(LGUI(KC_U));
     }
     break;
     default:
@@ -88,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS,             KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           KC_TRNS,           KC_TRNS,          KC_HOME,        KC_PGUP,        KC_END,              KC_EQUAL,
        KC_TRNS,             KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           KC_TRNS,           LCTL(KC_LEFT),    KC_UP,          LCTL(KC_RGHT),  KC_TRNS,             LGUI(LSFT(KC_BSLASH)),
        KC_TRNS,             KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           LALT(KC_LEFT),     KC_LEFT,          KC_DOWN,        KC_RGHT,        LALT(KC_RGHT),       KC_TRNS,
-       KC_TRNS,             KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           LALT(KC_BSPC),     KC_BSPACE,        KC_PGDOWN,      KC_DELETE,      LALT(KC_DEL),        KC_TRNS,
+       LCTL(KC_MINUS),      KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           LALT(KC_BSPC),     KC_BSPACE,        KC_PGDOWN,      KC_DELETE,      LALT(KC_DEL),        LCTL(LSFT(KC_MINUS)),
        LGUI(LSFT(KC_V)),    KC_TRNS,             RESET,         KC_TRNS,         KC_TRNS,       KC_TRNS,           LM(_MEH,MOD_MEH),  KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,             KC_TRNS),
     [_MEH] = LAYOUT_ortho_5x12(
        KC_TRNS,             KC_F1,               KC_F2,         KC_F3,           KC_F4,         KC_F5,             KC_F6,             KC_F7,            KC_F8,          KC_F9,          KC_F10,              KC_F16,
