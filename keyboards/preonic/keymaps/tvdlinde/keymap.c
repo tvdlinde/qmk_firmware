@@ -85,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        LSFT_T(KC_CAPSLOCK),   KC_TRNS,             KC_TRNS,       KC_LBRC,         KC_RBRC,       KC_TRNS,           KC_TRNS,           KC_P1,            KC_P2,          KC_P3,          KC_TRNS,             RSFT_T(KC_CAPSLOCK),
        KC_F3,                 KC_TRNS,             KC_TRNS,       LALT(KC_BSLASH), LALT(KC_PIPE), LM(_RED,MOD_MEH),  KC_TRNS,           KC_TRNS,          KC_P0,          KC_BSPC,        KC_PDOT,             KC_TRNS),
     [_GRN] = LAYOUT_ortho_5x12(
-       KC_TRNS,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           KC_TRNS,           KC_TRNS,          KC_HOME,        KC_PGUP,        KC_END,              KC_EQUAL,
+       KC_TRNS,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           KC_TRNS,           KC_HOME,          KC_PGUP,        KC_END,         KC_TRNS,             KC_EQUAL,
        KC_TRNS,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           KC_TRNS,           LCTL(KC_LEFT),    KC_UP,          LCTL(KC_RGHT),  KC_TRNS,             LGUI(LSFT(KC_BSLASH)),
        KC_TRNS,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           LALT(KC_LEFT),     KC_LEFT,          KC_DOWN,        KC_RGHT,        LALT(KC_RGHT),       KC_TRNS,
        TD(DANCE_4),           KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           LALT(KC_BSPC),     KC_BSPACE,        KC_PGDOWN,      KC_DELETE,      LALT(KC_DEL),        TD(DANCE_5),
