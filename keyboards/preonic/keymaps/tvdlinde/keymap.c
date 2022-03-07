@@ -21,9 +21,9 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
  switch(biton32(layer_state)){
     case _BLU:
     if (clockwise) {
-        tap_code16(LCTL(LSFT(KC_RGHT)));
+        tap_code16(LCTL(LSFT(KC_MINUS)));
     } else {
-        tap_code16(LCTL(LSFT(KC_LEFT)));
+        tap_code16(LCTL(KC_MINUS));
     }
     break;
     case _RED:
