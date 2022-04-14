@@ -92,8 +92,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        LGUI(LSFT(KC_V)),      KC_TRNS,             RESET,         KC_TRNS,         KC_TRNS,       KC_TRNS,           LM(_RED,MOD_MEH),  KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,             KC_TRNS),
     [_RED] = LAYOUT_ortho_5x12(
        KC_TRNS,               KC_F1,               KC_F2,         KC_F3,           KC_F4,         KC_F5,             KC_F6,             KC_F7,            KC_F8,          KC_F9,          KC_F10,              KC_F16,
-       KC_F13,                KC_TRNS,             KC_W,          KC_F,            KC_P,          KC_TRNS,           KC_TRNS,           KC_L,             KC_U,           KC_Y,           KC_TRNS,             KC_TRNS,
-       KC_TRNS,               KC_A,                KC_R,          KC_S,            KC_T,          KC_G,              KC_M,              KC_N,             KC_E,           KC_I,           KC_O,                KC_TRNS,
+       KC_F13,                KC_TRNS,             KC_W,          KC_F,            KC_P,          KC_TRNS,           KC_TRNS,           KC_L,             KC_U,           KC_Y,           KC_TRNS,             TO(_GRN),
+       KC_TRNS,               KC_A,                KC_R,          KC_S,            KC_T,          KC_G,              KC_M,              KC_N,             KC_E,           KC_I,           KC_O,                TO(_BLU),
        KC_LEFT,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_LGUI,           KC_LGUI,           KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,             KC_RGHT, 
        KC_F13,                LGUI_T(KC_F12),      KC_TRNS,       KC_TRNS,         KC_UP,         KC_TRNS,           KC_TRNS,           KC_DOWN,          KC_ESCAPE,      KC_TRNS,        RGUI_T(KC_F12),      RGUI_T(KC_ENTER)),
 };
