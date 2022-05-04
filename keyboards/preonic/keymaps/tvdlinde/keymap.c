@@ -81,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS,               KC_TRNS,             KC_TRNS,       KC_LCBR,         KC_RCBR,       KC_TRNS,           KC_GRAVE,          KC_P7,            KC_P8,          KC_P9,          KC_BSLASH,           KC_TRNS,
        LALT(KC_BSPC),         KC_TRNS,             KC_MINUS,      KC_LPRN,         KC_RPRN,       KC_DLR,            KC_MINUS,          KC_P4,            KC_P5,          KC_P6,          KC_QUOTE,            KC_TRNS,
        LSFT_T(KC_CAPSLOCK),   KC_TRNS,             KC_TRNS,       KC_LBRC,         KC_RBRC,       KC_TRNS,           KC_TRNS,           KC_P1,            KC_P2,          KC_P3,          KC_TRNS,             RSFT_T(KC_CAPSLOCK),
-       KC_F3,                 KC_TRNS,             KC_TRNS,       LALT(KC_BSLASH), LALT(KC_PIPE), LM(_RED,MOD_MEH),  KC_TRNS,           KC_TRNS,          KC_P0,          KC_BSPC,        KC_PDOT,             KC_TRNS),
+       KC_TRNS,               KC_TRNS,             KC_TRNS,       LALT(KC_BSLASH), LALT(KC_PIPE), LM(_RED,MOD_MEH),  KC_TRNS,           KC_TRNS,          KC_P0,          KC_BSPC,        KC_PDOT,             KC_TRNS),
     [_GRN] = LAYOUT_ortho_5x12(
        KC_TRNS,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           KC_TRNS,           KC_HOME,          KC_PGUP,        KC_END,         KC_TRNS,             KC_EQUAL,
        KC_TRNS,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           KC_TRNS,           LCTL(KC_LEFT),    KC_UP,          LCTL(KC_RGHT),  KC_TRNS,             LGUI(LSFT(KC_BSLASH)),
@@ -93,7 +93,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS,               KC_TRNS,             KC_W,          KC_F,            KC_P,          KC_TRNS,           KC_TRNS,           KC_L,             KC_U,           KC_Y,           KC_TRNS,             TO(_GRN),
        KC_TRNS,               KC_A,                KC_R,          KC_S,            KC_T,          KC_G,              KC_M,              KC_N,             KC_E,           KC_I,           KC_O,                TO(_BLU),
        KC_LEFT,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_LGUI,           KC_LGUI,           KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,             KC_RGHT, 
-       KC_F13,                LGUI_T(KC_F12),      KC_TRNS,       KC_F13,          KC_UP,         KC_TRNS,           KC_TRNS,           KC_DOWN,          KC_ESCAPE,      KC_TRNS,        RGUI_T(KC_F12),      RGUI_T(KC_ENTER)),
+       KC_F17,                LGUI_T(KC_F12),      KC_TRNS,       KC_F13,          KC_UP,         KC_TRNS,           KC_TRNS,           KC_DOWN,          KC_ESCAPE,      KC_TRNS,        RGUI_T(KC_F12),      RGUI_T(KC_ENTER)),
 };
 
 typedef struct {
