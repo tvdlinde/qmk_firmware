@@ -40,9 +40,9 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     break;
     default:
     if (clockwise) {
-        tap_code16(LALT(KC_DOWN));
+        tap_code16(KC_LEFT);
     } else {
-        tap_code16(LALT(KC_UP));
+        tap_code16(KC_RGHT);
     }  
     break;
 }
