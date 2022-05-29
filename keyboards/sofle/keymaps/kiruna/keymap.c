@@ -165,34 +165,21 @@ LALT(KC_BSPC),KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS, KC_TRNS,                   LALT(K
 KC_LSFT,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,LGUI(LSFT(KC_V)),KC_TRNS,LALT(KC_BSPC),KC_BSPACE,KC_PGDOWN,KC_DELETE,LALT(KC_DEL),KC_RSFT,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
         LGUI(LSFT(KC_V)),RESET,LALT(KC_DEL),KC_TRNS,KC_TRNS,        KC_TRNS,LM(_RED,MOD_MEH),KC_TRNS,KC_TRNS,KC_TRNS
-
   //            \--------+--------+--------+---------+-------|        |--------+---------+--------+---------+-------/
 ),
       [_RED] = LAYOUT(
   //,------------------------------------------------.                         ,---------------------------------------------------.
-  KC_GRAVE, KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                           KC_6,    KC_7,   KC_8,    KC_9,    KC_0,    KC_MINUS,
+  KC_TRNS,  KC_F1,  KC_F2,   KC_F3,   KC_F4,   KC_F5,                          KC_F6,   KC_F7,  KC_F8,   KC_F9,   KC_F10,  KC_F16,
   //|------+-------+--------+--------+--------+------|                         |--------+-------+--------+--------+--------+---------|
-  KC_TAB,   KC_Q,   KC_W,    KC_F,    KC_P,    KC_B,                           KC_J,    KC_L,   KC_U,    KC_Y,    KC_SCLN, KC_BSLASH,
+  KC_TRNS,  KC_TRNS,KC_W,    KC_F,    KC_P,    KC_TRNS,                        KC_TRNS, KC_L,   KC_U,    KC_Y,    KC_TRNS, TO(_GRN),
   //|------+-------+--------+--------+--------+------|                        |--------+-------+--------+--------+--------+---------|
-  KC_BSPC,  KC_A,   KC_R,    KC_S,    KC_T,    KC_G,                           KC_M,    KC_N,   KC_E,    KC_I,    KC_O,    KC_QUOTE,
+  KC_TRNS,  KC_A,   KC_R,    KC_S,    KC_T,    KC_G,                           KC_M,    KC_N,   KC_E,    KC_I,    KC_O,    TO(_BLU),
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
-  KC_LSPO,  KC_Z,   KC_X, TD(DANCE_1),KC_D,    KC_V, LGUI(KC_Z),       KC_MUTE,KC_K,    KC_H,   KC_COMM, KC_DOT,  KC_SLSH, KC_RSPC,
+  KC_LEFT,  KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_LGUI,KC_F17,        KC_TRNS, KC_RGUI, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_RGHT,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
-   OSM(MOD_LCTL),KC_DEL,TD(DANCE_2), LT(_GRN,KC_SPC),LGUI_T(KC_F12),RGUI_T(KC_ENTER),LT(_BLU,KC_SPACE),TD(DANCE_3),KC_ESCAPE,OSM(MOD_RALT)
+                KC_TRNS,  KC_F13,  KC_UP,  KC_TRNS,LGUI_T(KC_F12),  RGUI_T(KC_F12),KC_TRNS,KC_DOWN,KC_ESCAPE,KC_TRNS    
   //            \--------+--------+--------+---------+-------|        |--------+---------+--------+---------+-------/
 ),
-    // [_GRN] = LAYOUT_ortho_5x12(
-    //    KC_TRNS,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           KC_TRNS,           KC_HOME,          KC_PGUP,        KC_END,         KC_TRNS,             KC_EQUAL,
-    //    LALT(KC_DEL),          KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           KC_TRNS,           LCTL(KC_LEFT),    KC_UP,          LCTL(KC_RGHT),  KC_TRNS,             LGUI(LSFT(KC_BSLASH)),
-    //    LALT(KC_BSPC),         KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           LALT(KC_LEFT),     KC_LEFT,          KC_DOWN,        KC_RGHT,        LALT(KC_RGHT),       KC_TRNS,
-    //    KC_LSFT,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           LALT(KC_BSPC),     KC_BSPACE,        KC_PGDOWN,      KC_DELETE,      LALT(KC_DEL),        KC_RSFT,
-    //    LGUI(LSFT(KC_V)),      KC_TRNS,             RESET,         LALT(KC_DEL),    KC_TRNS,       KC_TRNS,           LM(_RED,MOD_MEH),  KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,             KC_TRNS),
-    // [_RED] = LAYOUT_ortho_5x12(
-    //    KC_TRNS,               KC_F1,               KC_F2,         KC_F3,           KC_F4,         KC_F5,             KC_F6,             KC_F7,            KC_F8,          KC_F9,          KC_F10,              KC_F16,
-    //    KC_TRNS,               KC_TRNS,             KC_W,          KC_F,            KC_P,          KC_TRNS,           KC_TRNS,           KC_L,             KC_U,           KC_Y,           KC_TRNS,             TO(_GRN),
-    //    KC_TRNS,               KC_A,                KC_R,          KC_S,            KC_T,          KC_G,              KC_M,              KC_N,             KC_E,           KC_I,           KC_O,                TO(_BLU),
-    //    KC_LEFT,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_LGUI,           KC_LGUI,           KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,             KC_RGHT, 
-    //    KC_F17,                LGUI_T(KC_F12),      KC_TRNS,       KC_F13,          KC_UP,         KC_TRNS,           KC_TRNS,           KC_DOWN,          KC_ESCAPE,      KC_TRNS,        RGUI_T(KC_F12),      RGUI_T(KC_ENTER)),
 };
 
 typedef struct {
