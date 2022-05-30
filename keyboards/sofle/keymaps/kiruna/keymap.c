@@ -354,29 +354,12 @@ static void print_status_narrow(void) {
 
     oled_write_ln_P(PSTR(""), false);
 
-    //snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Undef-%ld", layer_state)
-
-
-    // switch (get_highest_layer(default_layer_state)) {
-    //     // case _QWERTY:
-    //     //     oled_write_ln_P(PSTR("Qwrt"), false);
-    //     //     break;
-    //     // case _COLEMAK:
-    //     //     oled_write_ln_P(PSTR("Clmk"), false);
-    //     //     break;
-    //     // case _COLEMAKDH:
-    //     //     oled_write_ln_P(PSTR("CmkDH"), false);
-    //     //     break;
-
-    //     default:
-    //         oled_write_ln_P(PSTR("CmkDH"), false);
-    // }
     oled_write_P(PSTR("\n\n"), false);
     // Print current layer
     oled_write_ln_P(PSTR("LAYER"), false);
     switch (get_highest_layer(layer_state)) {
         case _RED:
-            oled_write_P(PSTR("Red"), false);
+            oled_write_P(PSTR("Red  "), false);
             break;
         case _BLU:
             oled_write_P(PSTR("Blue"), false);
@@ -415,11 +398,14 @@ char layer_state_str[70];
 // QWERTY,
 // Light on inner column and underglow
 const rgblight_segment_t PROGMEM layer_red_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-  SET_LAYER_ID(HSV_RED)
+  SET_LAYER_ID(HSV_RED),
+  SET_NUMROW(HSV_RED),
+  SET_UNDERGLOW(HSV_RED)
 
 );
 const rgblight_segment_t PROGMEM layer_main_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-  SET_LAYER_ID(HSV_BLACK)
+  SET_LAYER_ID(HSV_BLACK),
+  SET_NUMROW(HSV_BLACK)
 );
 
 // // _NUM,
@@ -431,8 +417,8 @@ const rgblight_segment_t PROGMEM layer_main_lights[] = RGBLIGHT_LAYER_SEGMENTS(
 // _SYMBOL,
 // Light on inner column and underglow
 const rgblight_segment_t PROGMEM layer_blu_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    SET_LAYER_ID(HSV_BLUE)
-
+    SET_LAYER_ID(HSV_BLUE),
+SET_NUMROW(HSV_BLUE)
     );
 // _COMMAND,
 // Light on inner column and underglow
@@ -460,8 +446,8 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
 
     layer_main_lights,
     layer_blu_lights,
-    layer_red_lights,
-    layer_grn_lights
+    layer_grn_lights,
+    layer_red_lights
 
 );
 
@@ -469,8 +455,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     rgblight_set_layer_state(0, layer_state_cmp(state, _MAIN) && layer_state_cmp(default_layer_state,_MAIN));
 
     rgblight_set_layer_state(1, layer_state_cmp(state, _BLU));
-    rgblight_set_layer_state(2, layer_state_cmp(state, _RED));
-    rgblight_set_layer_state(3, layer_state_cmp(state, _GRN));
+    rgblight_set_layer_state(2, layer_state_cmp(state, _GRN));    
+    rgblight_set_layer_state(3, layer_state_cmp(state, _RED));
+
     return state;
 }
 void keyboard_post_init_user(void) {
