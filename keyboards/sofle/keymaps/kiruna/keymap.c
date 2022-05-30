@@ -6,8 +6,7 @@
 
 #define INDICATOR_BRIGHTNESS 30
 
-#define SET_ALL(hsv)  \
-    {0, 70, hsv}
+#define SET_ALL(hsv) {0, 70, hsv}
 
 enum sofle_layers {
    _MAIN,
@@ -27,12 +26,22 @@ enum tap_dance_codes {
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 1) {
+    switch(biton32(layer_state)){
+    case _GRN:
+    if (clockwise) {
+            tap_code(KC_MNXT);
+        } else {
+            tap_code(KC_MPRV);
+    }
+    break;
+    default:
         if (clockwise) {
             tap_code(KC_VOLU);
         } else {
             tap_code(KC_VOLD);
-        }
-        } else if (index == 0) {
+        } 
+    break;
+    }} else if (index == 0) {
  switch(biton32(layer_state)){
     case _BLU:
     if (clockwise) {
@@ -103,7 +112,7 @@ LALT(KC_DEL),KC_TRNS,KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS,                        K
   //|------+-------+--------+--------+--------+------|                        |--------+-------+--------+--------+--------+---------|
 LALT(KC_BSPC),KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS, KC_TRNS,                   LALT(KC_LEFT),KC_LEFT,KC_DOWN, KC_RGHT,LALT(KC_RGHT),KC_TRNS,
  //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
-KC_LSFT,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,LGUI(LSFT(KC_V)),KC_TRNS,LALT(KC_BSPC),KC_BSPACE,KC_PGDOWN,KC_DELETE,LALT(KC_DEL),KC_RSFT,
+KC_LSFT,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,LGUI(LSFT(KC_V)),KC_MPLY,LALT(KC_BSPC),KC_BSPACE,KC_PGDOWN,KC_DELETE,LALT(KC_DEL),KC_RSFT,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
         LGUI(LSFT(KC_V)),RESET,LALT(KC_DEL),KC_TRNS,KC_TRNS,        KC_TRNS,LM(_RED,MOD_MEH),KC_TRNS,KC_TRNS,KC_TRNS
   //            \--------+--------+--------+---------+-------|        |--------+---------+--------+---------+-------/
