@@ -47,6 +47,8 @@
       {35+ 7, 4, hsv}, \
         {25, 2, hsv}, \
       {35+ 25, 2, hsv}
+#define SET_ALL(hsv)  \
+    {0, 70, hsv}
 
 enum sofle_layers {
    _MAIN,
@@ -398,14 +400,11 @@ char layer_state_str[70];
 // QWERTY,
 // Light on inner column and underglow
 const rgblight_segment_t PROGMEM layer_red_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-  SET_LAYER_ID(HSV_RED),
-  SET_NUMROW(HSV_RED),
-  SET_UNDERGLOW(HSV_RED)
+  SET_ALL(HSV_RED)
 
 );
 const rgblight_segment_t PROGMEM layer_main_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-  SET_LAYER_ID(HSV_BLACK),
-  SET_NUMROW(HSV_BLACK)
+  SET_ALL(HSV_BLACK)
 );
 
 // // _NUM,
@@ -417,8 +416,7 @@ const rgblight_segment_t PROGMEM layer_main_lights[] = RGBLIGHT_LAYER_SEGMENTS(
 // _SYMBOL,
 // Light on inner column and underglow
 const rgblight_segment_t PROGMEM layer_blu_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    SET_LAYER_ID(HSV_BLUE),
-SET_NUMROW(HSV_BLUE)
+    SET_ALL(HSV_BLUE)
     );
 // _COMMAND,
 // Light on inner column and underglow
@@ -438,8 +436,7 @@ SET_NUMROW(HSV_BLUE)
 //     );
 // _SWITCHER   // light up top row
 const rgblight_segment_t PROGMEM layer_grn_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    SET_LAYER_ID(HSV_GREEN),
-    SET_NUMROW(HSV_GREEN)
+    SET_ALL(HSV_GREEN)
 );
 
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
