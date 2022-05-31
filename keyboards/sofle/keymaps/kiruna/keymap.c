@@ -16,9 +16,11 @@ enum sofle_layers {
 };
 
 enum tap_dance_codes {
-  DANCE_1,
-  DANCE_2,
-  DANCE_3,
+  TD_1,
+  TD_2,
+  TD_3,
+  TD_4,
+  TD_5
 };
 
 
@@ -84,11 +86,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+-------+--------+--------+--------+------|                        |--------+-------+--------+--------+--------+---------|
   KC_TAB,   KC_Q,   KC_W,    KC_F,    KC_P,    KC_B,                           KC_J,    KC_L,   KC_U,    KC_Y,    KC_SCLN, KC_BSLASH,
   //|------+-------+--------+--------+--------+------|                        |--------+-------+--------+--------+--------+---------|
-  KC_BSPC,  KC_A,   KC_R,    KC_S,    KC_T,    KC_G,                           KC_M,    KC_N,   KC_E,    KC_I,    KC_O,    KC_QUOTE,
+  TD(TD_4), KC_A,   KC_R,    KC_S,    KC_T,    KC_G,                           KC_M,    KC_N,   KC_E,    KC_I,    KC_O,    KC_QUOTE,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
-  KC_LSPO,  KC_Z,   KC_X, TD(DANCE_1),KC_D,    KC_V, LGUI(KC_Z),       KC_MUTE,KC_K,    KC_H,   KC_COMM, KC_DOT,  KC_SLSH, KC_RSPC,
+  KC_LSPO,  KC_Z,   KC_X,    TD(TD_1),KC_D,    KC_V, LGUI(KC_Z),       KC_MUTE,KC_K,    KC_H,   KC_COMM, KC_DOT,  KC_SLSH, KC_RSPC,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
-        KC_LCPO,KC_DEL,TD(DANCE_2), LT(_GRN,KC_SPC),LGUI_T(KC_F12),RGUI_T(KC_ENTER),LT(_BLU,KC_SPACE),TD(DANCE_3),KC_ESCAPE,KC_RAPC
+         KC_LCPO,TD(TD_5),TD(TD_2),LT(_GRN,KC_SPC),LGUI_T(KC_F12),RGUI_T(KC_ENTER),LT(_BLU,KC_SPACE),TD(TD_3),KC_ESCAPE,KC_RAPC
   //            \--------+--------+--------+---------+-------|        |--------+---------+--------+---------+-------/
 ),
         [_BLU] = LAYOUT(
@@ -112,7 +114,7 @@ LALT(KC_DEL),KC_TRNS,KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS,                        K
   //|------+-------+--------+--------+--------+------|                        |--------+-------+--------+--------+--------+---------|
 LALT(KC_BSPC),KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS, KC_TRNS,                   LALT(KC_LEFT),KC_LEFT,KC_DOWN, KC_RGHT,LALT(KC_RGHT),KC_TRNS,
  //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
-KC_TRNS,KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,LGUI(LSFT(KC_V)),KC_MPLY,LALT(KC_BSPC),KC_BSPACE,KC_PGDOWN,KC_DELETE,LALT(KC_DEL),KC_RSFT,
+    KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,LGUI(KC_K),   KC_MPLY,LALT(KC_BSPC),KC_BSPACE,KC_PGDOWN,KC_DELETE,LALT(KC_DEL),KC_RSFT,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
         LGUI(LSFT(KC_V)),KC_TRNS,LALT(KC_DEL),KC_TRNS,KC_TRNS,        KC_TRNS,LM(_RED,MOD_MEH),KC_TRNS,KC_TRNS,KC_TRNS
   //            \--------+--------+--------+---------+-------|        |--------+---------+--------+---------+-------/
@@ -299,9 +301,11 @@ void dance_3_reset(qk_tap_dance_state_t *state, void *user_data) {
 }
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [DANCE_1] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_1, dance_1_finished, dance_1_reset),
-    [DANCE_2] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_2, dance_2_finished, dance_2_reset),
-    [DANCE_3] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_3, dance_3_finished, dance_3_reset),
+    [TD_1] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_1, dance_1_finished, dance_1_reset),
+    [TD_2] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_2, dance_2_finished, dance_2_reset),
+    [TD_3] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_3, dance_3_finished, dance_3_reset),
+    [TD_4] = ACTION_TAP_DANCE_DOUBLE(KC_BSPC, LALT(KC_BSPC)),
+    [TD_5] = ACTION_TAP_DANCE_DOUBLE(KC_DEL, LALT(KC_DEL))
 };
 
 
