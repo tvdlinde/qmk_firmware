@@ -4,7 +4,10 @@
 
 #define NO_AUTO_SHIFT_ALPHA
 
-#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD                          
+#define LSPO_KEYS KC_LSFT, KC_LSFT, KC_LBRC                   
+#define RSPC_KEYS KC_RSFT, KC_LSFT, KC_RBRC  
+#define LCPO_KEYS KC_LCTL, KC_TRNS, KC_LBRC                     
+#define RAPC_KEYS KC_RALT, KC_TRNS, KC_RBRC
 
 #define MASTER_LEFT
 
