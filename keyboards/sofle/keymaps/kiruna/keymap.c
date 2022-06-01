@@ -27,7 +27,7 @@ enum tap_dance_codes {
 #ifdef ENCODER_ENABLE
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
-    if (index == 1) {
+    if (index == 0) {
     switch(biton32(layer_state)){
     case _GRN:
     if (clockwise) {
@@ -43,7 +43,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
             tap_code(KC_VOLD);
         } 
     break;
-    }} else if (index == 0) {
+    }} else if (index == 1) {
  switch(biton32(layer_state)){
     case _BLU:
     if (clockwise) {
@@ -68,9 +68,9 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     break;
     default:
     if (clockwise) {
-        tap_code16(LALT(KC_DOWN));
+        tap_code16(LSFT(KC_RGHT));
     } else {
-        tap_code16(LALT(KC_UP));
+        tap_code16(LSFT(KC_LEFT));
     }  
     break;
 }}
@@ -88,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+-------+--------+--------+--------+------|                        |--------+-------+--------+--------+--------+---------|
   TD(TD_4), KC_A,   KC_R,    KC_S,    KC_T,    KC_G,                           KC_M,    KC_N,   KC_E,    KC_I,    KC_O,    KC_QUOTE,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
-  KC_LSPO,  KC_Z,   KC_X,    TD(TD_1),KC_D,    KC_V, LGUI(KC_Z),       KC_MUTE,KC_K,    KC_H,   KC_COMM, KC_DOT,  KC_SLSH, KC_RSPC,
+  KC_LSPO,  KC_Z,   KC_X,    TD(TD_1),KC_D,    KC_V, KC_MUTE,       LGUI(KC_Z),KC_K,    KC_H,   KC_COMM, KC_DOT,  KC_SLSH, KC_RSPC,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
          KC_LCPO,TD(TD_5),TD(TD_2),LT(_GRN,KC_SPC),LGUI_T(KC_F12),RGUI_T(KC_ENTER),LT(_BLU,KC_SPACE),TD(TD_3),KC_ESCAPE,KC_RAPC
   //            \--------+--------+--------+---------+-------|        |--------+---------+--------+---------+-------/
@@ -114,7 +114,7 @@ LALT(KC_DEL),KC_TRNS,KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS,                        K
   //|------+-------+--------+--------+--------+------|                        |--------+-------+--------+--------+--------+---------|
 LALT(KC_BSPC),KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS, KC_TRNS,                   LALT(KC_LEFT),KC_LEFT,KC_DOWN, KC_RGHT,LALT(KC_RGHT),KC_TRNS,
  //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
-    KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,LGUI(KC_K),   KC_MPLY,LALT(KC_BSPC),KC_BSPACE,KC_PGDOWN,KC_DELETE,LALT(KC_DEL),KC_RSFT,
+    KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_MPLY,   LGUI(KC_K),LALT(KC_BSPC),KC_BSPACE,KC_PGDOWN,KC_DELETE,LALT(KC_DEL),KC_RSFT,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
         LGUI(LSFT(KC_V)),KC_TRNS,LALT(KC_DEL),KC_TRNS,KC_TRNS,        KC_TRNS,LM(_RED,MOD_MEH),KC_TRNS,KC_TRNS,KC_TRNS
   //            \--------+--------+--------+---------+-------|        |--------+---------+--------+---------+-------/
@@ -127,7 +127,7 @@ LALT(KC_BSPC),KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS, KC_TRNS,                   LALT(K
   //|------+-------+--------+--------+--------+------|                        |--------+-------+--------+--------+--------+---------|
   KC_TRNS,  KC_A,   KC_R,    KC_S,    KC_T,    KC_G,                           KC_M,    KC_N,   KC_E,    KC_I,    KC_O,    TO(_BLU),
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
-  KC_LEFT,  KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_LGUI,KC_F17,        RESET, KC_RGUI, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_RGHT,
+  KC_LEFT,  KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_LGUI,RESET,          KC_F17,KC_RGUI, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_RGHT,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
                 KC_TRNS,  KC_F13,  KC_UP,  KC_TRNS,LGUI_T(KC_F12),  RGUI_T(KC_F12),KC_TRNS,KC_DOWN,KC_ESCAPE,KC_TRNS    
   //            \--------+--------+--------+---------+-------|        |--------+---------+--------+---------+-------/
