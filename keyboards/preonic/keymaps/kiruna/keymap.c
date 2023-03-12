@@ -51,7 +51,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 return false;
 };
 
-uint32_t layer_state_set_user(uint32_t state) {
+layer_state_t layer_state_set_user(layer_state_t state) {
 #ifdef RGBLIGHT_ENABLE
     switch (biton32(state)) {
         case _BLU:
