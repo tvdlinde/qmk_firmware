@@ -91,10 +91,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_LSFT,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           LCTL (KC_BSPC),     KC_BSPACE,        KC_PGDOWN,      KC_DELETE,      LCTL(KC_DEL),        KC_RSFT,
        LCTL(KC_K),            KC_TRNS,             RESET,         LCTL(KC_DEL),    KC_TRNS,       KC_TRNS,           LM(_RED,MOD_LGUI),  KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,             KC_TRNS),
     [_RED] = LAYOUT_ortho_5x12(
-       KC_TRNS,               KC_F1,               KC_F2,         KC_F3,           KC_F4,         KC_F5,             KC_F6,             KC_F7,            KC_F8,          KC_F9,          KC_F10,              KC_F16,
+       KC_TRNS,               KC_1,               KC_2,         KC_3,           KC_4,         KC_5,             KC_6,             KC_7,            KC_8,          KC_9,          KC_0,              KC_TRNS,
        KC_TRNS,               KC_TRNS,             KC_W,          KC_F,            KC_P,          KC_TRNS,           KC_TRNS,           KC_L,             KC_U,           KC_Y,           KC_TRNS,             TO(_GRN),
        KC_TRNS,               KC_A,                KC_R,          KC_S,            KC_T,          KC_G,              KC_M,              KC_N,             KC_E,           KC_I,           KC_O,                TO(_BLU),
-       KC_LEFT,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_LGUI,           KC_LGUI,           KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,             KC_RGHT,
+       KC_TRNS,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           KC_TRNS,           KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,             KC_TRNS,
        KC_F17,                LCTL_T(KC_F12),      KC_F13,        KC_TRNS,         KC_UP,         KC_TRNS,           KC_TRNS,           KC_DOWN,          KC_ESCAPE,      KC_TRNS,        RCTL_T(KC_F12),      RCTL_T(KC_ENTER)),
 };
 
