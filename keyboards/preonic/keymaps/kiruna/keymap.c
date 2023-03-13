@@ -32,7 +32,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     } else {
         tap_code16(KC_M);
     }
-    break;            
+    break;
     case _GRN:
     if (clockwise) {
         tap_code16(LCTL(KC_D));
@@ -45,7 +45,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         tap_code16(KC_RGHT);
     } else {
         tap_code16(KC_LEFT);
-    }  
+    }
     break;
 }
 return false;
@@ -63,7 +63,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         case _GRN:
         rgblight_setrgb(RGB_GREEN);
         break;
-        default: 
+        default:
         rgblight_setrgb(RGB_OFF);
         break;
     }
@@ -72,9 +72,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_MAIN] = LAYOUT_ortho_5x12(  
-       KC_GRAVE,              KC_1,                KC_2,          KC_3,            KC_4,          KC_5,              KC_6,              KC_7,             KC_8,           KC_9,           KC_0,                KC_MINUS,  
-       KC_TAB,                KC_Q,                KC_W,          KC_F,            KC_P,          KC_B,              KC_J,              KC_L,             KC_U,           KC_Y,           KC_SCOLON,           KC_BSLASH, 
+    [_MAIN] = LAYOUT_ortho_5x12(
+       KC_GRAVE,              KC_1,                KC_2,          KC_3,            KC_4,          KC_5,              KC_6,              KC_7,             KC_8,           KC_9,           KC_0,                KC_MINUS,
+       KC_TAB,                KC_Q,                KC_W,          KC_F,            KC_P,          KC_B,              KC_J,              KC_L,             KC_U,           KC_Y,           KC_SCOLON,           KC_BSLASH,
        TD(TD_4),              KC_A,                KC_R,          KC_S,            KC_T,          KC_G,              KC_M,              KC_N,             KC_E,           KC_I,           KC_O,                KC_QUOTE,
        KC_LSPO,               KC_Z,                KC_X,          TD(TD_1),        KC_D,          KC_V,              KC_K,              KC_H,             KC_COMMA,       KC_DOT,         KC_SLASH,            KC_RSPC,
        LCTL(KC_Z),            LCTL_T(KC_F12),      KC_LCPO,       TD(TD_5),        TD(TD_2),      LT(_GRN,KC_SPACE), LT(_BLU,KC_SPACE), TD(TD_3),         KC_ESCAPE,      KC_RAPC,        RCTL_T(KC_F12),      RSFT_T(KC_ENTER)),
@@ -87,14 +87,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_GRN] = LAYOUT_ortho_5x12(
        KC_TRNS,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           KC_TRNS,           KC_HOME,          KC_PGUP,        KC_END,         KC_TRNS,             KC_EQUAL,
        LALT(KC_DEL),          KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           KC_TRNS,           LCTL(KC_LEFT),    KC_UP,          LCTL(KC_RGHT),  KC_TRNS,             LGUI(LSFT(KC_BSLASH)),
-       LALT(KC_BSPC),         KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           LALT(KC_LEFT),     KC_LEFT,          KC_DOWN,        KC_RGHT,        LALT(KC_RGHT),       KC_TRNS,
-       KC_LSFT,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           LALT(KC_BSPC),     KC_BSPACE,        KC_PGDOWN,      KC_DELETE,      LALT(KC_DEL),        KC_RSFT,
+       LALT(KC_BSPC),         KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           LCTL(KC_LEFT),     KC_LEFT,          KC_DOWN,        KC_RGHT,        LCTL(KC_RGHT),       KC_TRNS,
+       KC_LSFT,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           LCTL (KC_BSPC),     KC_BSPACE,        KC_PGDOWN,      KC_DELETE,      LCTL(KC_DEL),        KC_RSFT,
        LGUI(KC_K),            KC_TRNS,             RESET,         LALT(KC_DEL),    KC_TRNS,       KC_TRNS,           LM(_RED,MOD_MEH),  KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,             KC_TRNS),
     [_RED] = LAYOUT_ortho_5x12(
        KC_TRNS,               KC_F1,               KC_F2,         KC_F3,           KC_F4,         KC_F5,             KC_F6,             KC_F7,            KC_F8,          KC_F9,          KC_F10,              KC_F16,
        KC_TRNS,               KC_TRNS,             KC_W,          KC_F,            KC_P,          KC_TRNS,           KC_TRNS,           KC_L,             KC_U,           KC_Y,           KC_TRNS,             TO(_GRN),
        KC_TRNS,               KC_A,                KC_R,          KC_S,            KC_T,          KC_G,              KC_M,              KC_N,             KC_E,           KC_I,           KC_O,                TO(_BLU),
-       KC_LEFT,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_LGUI,           KC_LGUI,           KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,             KC_RGHT, 
+       KC_LEFT,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_LGUI,           KC_LGUI,           KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,             KC_RGHT,
        KC_F17,                LGUI_T(KC_F12),      KC_F13,        KC_TRNS,         KC_UP,         KC_TRNS,           KC_TRNS,           KC_DOWN,          KC_ESCAPE,      KC_TRNS,        RGUI_T(KC_F12),      RGUI_T(KC_ENTER)),
 };
 
