@@ -43,20 +43,19 @@
 #define TAPPING_TERM 200
 
 #define NO_AUTO_SHIFT_ALPHA
-                                
+
 #define ENCODERS_PAD_A { B12 }
 #define ENCODERS_PAD_B { B13 }
 #define ENCODER_DIRECTION_FLIP
 #define ENCODER_RESOLUTION 4
 
 
-#define LSPO_KEYS KC_LSFT, KC_LSFT, KC_LBRC                   
-#define RSPC_KEYS KC_RSFT, KC_LSFT, KC_RBRC  
-#define LCPO_KEYS KC_LGUI, KC_TRNS, KC_LBRC                     
+#define LSPO_KEYS KC_LSFT, KC_LSFT, KC_LBRC
+#define RSPC_KEYS KC_RSFT, KC_LSFT, KC_RBRC
+#define LCPO_KEYS KC_LGUI, KC_TRNS, KC_LBRC
 #define RAPC_KEYS KC_RALT, KC_TRNS, KC_RBRC
-                                
-                                
 
 
 
-                                
+
+
