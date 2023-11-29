@@ -4,9 +4,12 @@
 
 #define NO_AUTO_SHIFT_ALPHA
 
-#define LSPO_KEYS KC_LSFT, KC_LSFT, KC_LBRC                   
-#define RSPC_KEYS KC_RSFT, KC_LSFT, KC_RBRC  
-#define LCPO_KEYS KC_LCTL, KC_TRNS, KC_LBRC                     
+
+/* #define LSPO_KEYS KC_LSFT, KC_LSFT, KC_LBRC
+#define RSPC_KEYS KC_RSFT, KC_LSFT, KC_RBRC */
+#define LAPO_KEYS KC_LSFT, KC_LSFT, KC_LBRC
+#define RCPC_KEYS KC_RSFT, KC_RSFT, KC_RBRC
+#define LCPO_KEYS KC_LCTL, KC_TRNS, KC_LBRC
 #define RAPC_KEYS KC_RALT, KC_TRNS, KC_RBRC
 
 #define MASTER_LEFT
@@ -23,7 +26,7 @@
 #endif
 
 #define ENCODER_DIRECTION_FLIP
-#undef ENCODER_RESOLUTION 
+#undef ENCODER_RESOLUTION
 #define ENCODER_RESOLUTION 4
 
 #define RGBLIGHT_SLEEP
@@ -70,7 +73,3 @@
 #    define RGB_MATRIX_SPD_STEP 10
 
 #endif
-
-
-
-                                

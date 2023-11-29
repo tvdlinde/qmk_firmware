@@ -41,7 +41,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
             tap_code(KC_VOLU);
         } else {
             tap_code(KC_VOLD);
-        } 
+        }
     break;
     }} else if (index == 1) {
  switch(biton32(layer_state)){
@@ -58,7 +58,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     } else {
         tap_code16(KC_M);
     }
-    break;            
+    break;
     case _GRN:
     if (clockwise) {
         tap_code16(LGUI(KC_D));
@@ -71,7 +71,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         tap_code16(LSFT(KC_RGHT));
     } else {
         tap_code16(LSFT(KC_LEFT));
-    }  
+    }
     break;
 }}
 return false;
@@ -101,7 +101,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+-------+--------+--------+--------+------|                        |--------+-------+--------+--------+--------+---------|
   LALT(KC_BSPC),KC_TRNS,KC_MINUS,KC_LPRN,KC_RPRN,KC_DLR,                      KC_MINUS, KC_P4,  KC_P5,   KC_P6,   KC_QUOTE,KC_TRNS,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
-    CAPSWRD,KC_TRNS,KC_TRNS, KC_LBRC, KC_RBRC, KC_TRNS,KC_TRNS,       KC_TRNS,KC_TRNS,  KC_P1,  KC_P2,   KC_P3,   KC_TRNS, CAPSWRD,
+    KC_LBRC,KC_TRNS,KC_TRNS, KC_LBRC, KC_RBRC, KC_TRNS,KC_TRNS,       KC_TRNS,KC_TRNS,  KC_P1,  KC_P2,   KC_P3,   KC_TRNS, KC_RBRC,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
     KC_TRNS,LALT(KC_BSLASH),LALT(KC_PIPE),LM(_RED,MOD_MEH), KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,KC_P0,   KC_BSPC
   //            \--------+--------+--------+---------+-------|        |--------+---------+--------+---------+-------/
@@ -114,7 +114,7 @@ LALT(KC_DEL),KC_TRNS,KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS,                        K
   //|------+-------+--------+--------+--------+------|                        |--------+-------+--------+--------+--------+---------|
 LALT(KC_BSPC),KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS, KC_TRNS,                   LALT(KC_LEFT),KC_LEFT,KC_DOWN, KC_RGHT,LALT(KC_RGHT),KC_TRNS,
  //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
-    KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_MPLY,   LGUI(KC_K),LALT(KC_BSPC),KC_BSPACE,KC_PGDOWN,KC_DELETE,LALT(KC_DEL),KC_RSFT,
+    KC_LAPO,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_MPLY,   LGUI(KC_K),LALT(KC_BSPC),KC_BSPACE,KC_PGDOWN,KC_DELETE,LALT(KC_DEL),KC_RCPC,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
         LGUI(LSFT(KC_V)),KC_TRNS,LALT(KC_DEL),KC_TRNS,KC_TRNS,        KC_TRNS,LM(_RED,MOD_MEH),KC_TRNS,KC_TRNS,KC_TRNS
   //            \--------+--------+--------+---------+-------|        |--------+---------+--------+---------+-------/
@@ -129,7 +129,7 @@ LALT(KC_BSPC),KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS, KC_TRNS,                   LALT(K
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
   KC_LEFT,  KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_LGUI,RESET,          KC_F17,KC_RGUI, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_RGHT,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
-                KC_F13,  KC_TRNS,  KC_UP,  KC_TRNS,LGUI_T(KC_F12),  RGUI_T(KC_F12),KC_TRNS,KC_DOWN,KC_ESCAPE,KC_TRNS    
+                KC_F13,  KC_TRNS,  KC_UP,  KC_TRNS,LGUI_T(KC_F12),  RGUI_T(KC_F12),KC_TRNS,KC_DOWN,KC_ESCAPE,KC_TRNS
   //            \--------+--------+--------+---------+-------|        |--------+---------+--------+---------+-------/
 ),
 };
@@ -382,7 +382,7 @@ const rgblight_segment_t PROGMEM layer_grn_lights[] = RGBLIGHT_LAYER_SEGMENTS(
 
 const rgblight_segment_t PROGMEM layer_red_lights[] = RGBLIGHT_LAYER_SEGMENTS(
   SET_ALL(HSV_RED)
-);  
+);
 
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
 
@@ -397,7 +397,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     rgblight_set_layer_state(0, layer_state_cmp(state, _MAIN) && layer_state_cmp(default_layer_state,_MAIN));
 
     rgblight_set_layer_state(1, layer_state_cmp(state, _BLU));
-    rgblight_set_layer_state(2, layer_state_cmp(state, _GRN));    
+    rgblight_set_layer_state(2, layer_state_cmp(state, _GRN));
     rgblight_set_layer_state(3, layer_state_cmp(state, _RED));
 
     return state;
@@ -411,5 +411,3 @@ void keyboard_post_init_user(void) {
 
 }
 #endif
-
-
