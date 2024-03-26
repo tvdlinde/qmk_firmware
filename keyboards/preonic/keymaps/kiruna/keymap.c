@@ -88,14 +88,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           KC_TRNS,           KC_HOME,          KC_PGUP,        KC_END,         KC_TRNS,             KC_EQUAL,
        LCTL(KC_DEL),          KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           KC_TRNS,           LALT(KC_LEFT),    KC_UP,          LALT(KC_RGHT),  KC_TRNS,             LGUI(LSFT(KC_BSLASH)),
        KC_BSPC,         KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           LCTL(KC_LEFT),     KC_LEFT,          KC_DOWN,        KC_RGHT,        LCTL(KC_RGHT),       KC_TRNS,
-       KC_LCPO,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           LALT(KC_BSPC),     KC_BSPACE,        KC_PGDOWN,      KC_DELETE,      LCTL(KC_DEL),        KC_RCPC,
+       KC_LCPO,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           LCTL(KC_BSPC),     KC_BSPACE,        KC_PGDOWN,      KC_DELETE,      LCTL(KC_DEL),        KC_RCPC,
        LCTL(KC_K),            KC_TRNS,             RESET,         LCTL(KC_DEL),    KC_TRNS,       KC_TRNS,           LM(_RED,MOD_LGUI),  KC_TRNS,          KC_TRNS,        KC_TRNS,        KC_TRNS,             KC_TRNS),
     [_RED] = LAYOUT_ortho_5x12(
        KC_TRNS,               KC_1,               KC_2,         KC_3,           KC_4,         KC_5,             KC_6,             KC_7,            KC_8,          KC_9,          KC_0,              KC_TRNS,
        KC_TRNS,               KC_Q,             KC_W,          KC_F,            KC_P,          KC_B,           KC_J,           KC_L,             KC_U,           KC_Y,           KC_TRNS,             TO(_GRN),
        KC_TRNS,               KC_A,                KC_R,          KC_S,            KC_T,          KC_G,              KC_M,              KC_N,             KC_E,           KC_I,           KC_O,                TO(_BLU),
        KC_LSFT,               KC_Z,             KC_X,       KC_C,         KC_D,       KC_V,           KC_K,           KC_H,          KC_TRNS,        KC_TRNS,        KC_TRNS,             KC_RSFT,
-       LSFT(KC_B),                LSFT_T(KC_F12),      KC_F13,        KC_TRNS,         KC_UP,         KC_TRNS,           KC_TRNS,           KC_DOWN,          KC_ESCAPE,      KC_TRNS,        RSFT_T(KC_F12),      RSFT_T(KC_ENTER)),
+       LSFT(KC_B),                LSFT_T(KC_F12),      KC_SPACE,        KC_DEL,         KC_UP,         KC_TRNS,           KC_TRNS,           KC_DOWN,          KC_ESCAPE,      KC_TRNS,        RSFT_T(KC_F12),      RSFT_T(KC_ENTER)),
 };
 
 typedef struct {
