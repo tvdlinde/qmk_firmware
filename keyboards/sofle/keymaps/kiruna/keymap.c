@@ -56,7 +56,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     if (clockwise) {
         tap_code16(LWIN(KC_TAB));
     } else {
-        tap_code16(KLWIN(LSFT(KC_TAB)));
+        tap_code16(LWIN(LSFT(KC_TAB)));
     }
     break;
     case _GRN:
@@ -121,7 +121,7 @@ KC_BSPC,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS, KC_TRNS,                   LCTL(KC_LEFT
 ),
       [_RED] = LAYOUT(
   //,------------------------------------------------.                         ,---------------------------------------------------.
-  KC_TRNS,  KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                           KC_6,    KC_7,   KC_8,    KC_9,    KC_10,   KC_16,
+  KC_TRNS,  KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                           KC_6,    KC_7,   KC_8,    KC_9,    KC_0,   KC_TRNS,
   //|------+-------+--------+--------+--------+------|                         |--------+-------+--------+--------+--------+---------|
   KC_TRNS,  KC_TRNS,KC_W,    KC_F,    KC_P,    KC_TRNS,                        KC_TRNS, KC_L,   KC_U,    KC_Y,    KC_TRNS, TO(_GRN),
   //|------+-------+--------+--------+--------+------|                        |--------+-------+--------+--------+--------+---------|
