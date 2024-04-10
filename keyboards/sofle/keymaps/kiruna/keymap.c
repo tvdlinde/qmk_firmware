@@ -37,9 +37,9 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     }
     case _GRN:
     if (clockwise) {
-            tap_code(LSFT(LALT(KC_RIGHT)));
+            tap_code16(LSFT(LALT(KC_RIGHT)));
         } else {
-            tap_code(LSFT(LALT(KC_LEFT)));
+            tap_code16(LSFT(LALT(KC_LEFT)));
     }
     break;
     default:
