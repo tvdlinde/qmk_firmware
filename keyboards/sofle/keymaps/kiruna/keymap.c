@@ -29,6 +29,12 @@ enum tap_dance_codes {
 bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
     switch(biton32(layer_state)){
+            case _BLU:
+    if (clockwise) {
+        tap_code16(HYP(KC_RIGHT));
+    } else {
+        tap_code16(HYP(KC_LEFT));
+    }
     case _RED:
     if (clockwise) {
         tap_code16(KC_RIGHT);
@@ -107,7 +113,7 @@ LALT(KC_BSPC), KC_A,   KC_R,    KC_S,    KC_T,    KC_G,                         
   //|------+-------+--------+--------+--------+------|                        |--------+-------+--------+--------+--------+---------|
   KC_BSPC,KC_TRNS,KC_MINUS,KC_LPRN,KC_RPRN,KC_DLR,                      KC_MINUS, KC_P4,  KC_P5,   KC_P6,   KC_KP_PLUS,KC_TRNS,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
-    KC_LBRC,KC_TRNS,KC_TRNS, KC_LBRC, KC_RBRC, KC_TRNS,KC_TRNS,       KC_TRNS,KC_TRNS,  KC_P1,  KC_P2,   KC_P3,   KC_TRNS, KC_RBRC,
+    KC_LBRC,KC_TRNS,KC_TRNS, KC_LBRC, KC_RBRC, KC_TRNS,HYP(KC_F13),     KC_TRNS,KC_TRNS,  KC_P1,  KC_P2,   KC_P3,   KC_TRNS, KC_RBRC,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
     KC_TRNS,LALT(KC_BSLASH),LALT(KC_PIPE),LM(_RED,MOD_LGUI), KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,KC_P0,   KC_BSPC
   //            \--------+--------+--------+---------+-------|        |--------+---------+--------+---------+-------/
