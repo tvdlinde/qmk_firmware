@@ -35,12 +35,14 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     } else {
         tap_code16(LGUI(KC_F15));
     }
+    break;
     case _RED:
     if (clockwise) {
         tap_code16(LGUI(KC_RIGHT));
     } else {
         tap_code16(LGUI(KC_LEFT));
     }
+    break;
     case _GRN:
     if (clockwise) {
             tap_code16(LSFT(LALT(KC_RIGHT)));
