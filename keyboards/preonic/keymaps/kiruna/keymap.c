@@ -83,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        LCTL(KC_DEL),          KC_TRNS,             KC_TRNS,       KC_LCBR,         KC_RCBR,       KC_TRNS,           KC_GRAVE,          KC_P7,            KC_P8,          KC_P9,          KC_TRNS,             KC_TRNS,
        KC_BSPC,         KC_TRNS,             KC_MINUS,      KC_LPRN,         KC_RPRN,       KC_DLR,            KC_MINUS,          KC_P4,            KC_P5,          KC_P6,          KC_KP_PLUS,          KC_TRNS,
        KC_LBRC,               KC_TRNS,             KC_TRNS,       KC_LBRC,         KC_RBRC,       KC_TRNS,           KC_TRNS,           KC_P1,            KC_P2,          KC_P3,          KC_TRNS,             KC_RBRC,
-       LCTL(KC_Z),      KC_TRNS,             KC_TRNS,       RALT(KC_LBRC), RALT(KC_LBRC), LM(_RED,MOD_LGUI),  KC_TRNS,           KC_TRNS,          KC_P0,          KC_BSPC,        KC_PDOT,             KC_TRNS),
+       LCTL(KC_Z),      KC_TRNS,             KC_TRNS,       RALT(KC_LBRC), RALT(KC_RBRC), LM(_RED,MOD_LGUI),  KC_TRNS,           KC_TRNS,          KC_P0,          KC_BSPC,        KC_PDOT,             KC_TRNS),
     [_GRN] = LAYOUT_ortho_5x12(
        KC_TRNS,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           KC_TRNS,           KC_HOME,          KC_PGUP,        KC_END,         KC_TRNS,             KC_EQUAL,
        LCTL(KC_DEL),          KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           KC_TRNS,           LALT(KC_LEFT),    KC_UP,          LALT(KC_RGHT),  KC_TRNS,             LGUI(LSFT(KC_BSLASH)),
