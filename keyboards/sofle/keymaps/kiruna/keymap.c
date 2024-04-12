@@ -117,7 +117,7 @@ LALT(KC_BSPC), KC_A,   KC_R,    KC_S,    KC_T,    KC_G,                         
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
     KC_LBRC,KC_TRNS,KC_TRNS, KC_LBRC, KC_RBRC, KC_TRNS,KC_F13,          KC_TRNS,KC_TRNS,  KC_P1,  KC_P2,   KC_P3,   KC_TRNS, KC_RBRC,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
-    KC_TRNS,LALT(KC_BSLASH),LALT(KC_PIPE),LM(_RED,MOD_LGUI), KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS,KC_P0,   KC_BSPC
+    KC_TRNS,RALT(KC_LBRC),RALT(KC_LBRC),LM(_RED,MOD_LGUI),KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS,  KC_P0, KC_BSPC
   //            \--------+--------+--------+---------+-------|        |--------+---------+--------+---------+-------/
 ),
    [_GRN] = LAYOUT(
