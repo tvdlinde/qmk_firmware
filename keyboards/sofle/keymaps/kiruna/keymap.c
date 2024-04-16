@@ -130,7 +130,7 @@ KC_BSPC,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS, KC_TRNS,                   LCTL(KC_LEFT
  //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
     KC_LAPO,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_MPLY,   LCTL(KC_K),LCTL(KC_BSPC),KC_BSPACE,KC_PGDOWN,KC_DELETE,LCTL(KC_DEL),KC_RCPC,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
-        LGUI(LSFT(KC_V)),KC_TRNS,LCTL(KC_DEL),KC_TRNS,LM(_RED,MOD_LGUI), KC_TRNS,LM(_RED,MOD_LGUI),KC_TRNS,KC_TRNS,KC_TRNS
+        LGUI(KC_INS),KC_TRNS,LCTL(KC_DEL),KC_TRNS,LM(_RED,MOD_LGUI), KC_TRNS,LM(_RED,MOD_LGUI),KC_TRNS,KC_TRNS,KC_TRNS
   //            \--------+--------+--------+---------+-------|        |--------+---------+--------+---------+-------/
 ),
       [_RED] = LAYOUT(
