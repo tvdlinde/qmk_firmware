@@ -82,9 +82,9 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     break;
     default:
     if (clockwise) {
-        tap_code16(KC_MS_WH_DOWN);
+        tap_code16(LCTL(KC_L));
     } else {
-        tap_code16(KC_MS_WH_UP);
+        tap_code16(LCTL(KC_J));
     }
     break;
 }}
