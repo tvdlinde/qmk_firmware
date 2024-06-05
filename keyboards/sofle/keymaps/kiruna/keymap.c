@@ -100,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+-------+--------+--------+--------+------|                        |--------+-------+--------+--------+--------+---------|
   KC_TAB,   KC_Q,   KC_W,    KC_F,    KC_P,    KC_B,                           KC_J,    KC_L,   KC_U,    KC_Y,    KC_SCLN, KC_BSLASH,
   //|------+-------+--------+--------+--------+------|                        |--------+-------+--------+--------+--------+---------|
-LALT(KC_BSPC), KC_A,   KC_R,    KC_S,    KC_T,    KC_G,                           KC_M,    KC_N,   KC_E,    KC_I,    KC_O,    KC_QUOTE,
+LCTL(KC_BSPC), KC_A,   KC_R,    KC_S,    KC_T,    KC_G,                           KC_M,    KC_N,   KC_E,    KC_I,    KC_O,    KC_QUOTE,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
   KC_LSPO,  KC_Z,   KC_X,    TD(TD_1),KC_D,    KC_V, KC_MUTE,       LCTL(KC_Z),KC_K,    KC_H,   KC_COMM, KC_DOT,  KC_SLSH, KC_RSPC,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
@@ -122,9 +122,9 @@ LALT(KC_BSPC), KC_A,   KC_R,    KC_S,    KC_T,    KC_G,                         
 ),
    [_GRN] = LAYOUT(
   //,------------------------------------------------.                         ,---------------------------------------------------.
-  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS,                          KC_TRNS, KC_HOME,KC_PGUP, KC_END, KC_TRNS, KC_EQUAL,
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS,                          KC_TRNS, LALT(KC_LEFT),KC_PGUP, LALT(KC_RGHT),LALT(KC_A), KC_EQUAL,
   //|------+-------+--------+--------+--------+------|                         |--------+-------+--------+--------+--------+---------|
-LCTL(KC_DEL),KC_TRNS,KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS,                        KC_TRNS,LALT(KC_LEFT),KC_UP,LALT(KC_RGHT),KC_TRNS,LGUI(LSFT(KC_BSLASH)),
+LCTL(KC_DEL),KC_TRNS,KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS,                        KC_TRNS,KC_HOME,KC_UP,KC_END,KC_TRNS,LCTL(LSFT(KC_BSLASH)),
   //|------+-------+--------+--------+--------+------|                        |--------+-------+--------+--------+--------+---------|
 KC_BSPC,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS, KC_TRNS,                   LCTL(KC_LEFT),KC_LEFT,KC_DOWN, KC_RGHT,LCTL(KC_RGHT),KC_TRNS,
  //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
