@@ -298,8 +298,8 @@ void dance_3_finished(qk_tap_dance_state_t *state, void *user_data) {
     switch (dance_state.step) {
         case SINGLE_TAP: register_code16(RALT(KC_GRAVE)); break;
         case SINGLE_HOLD: register_code16(LSFT(RALT(KC_QUOTE))); break;
-        case DOUBLE_TAP: register_code16(RALT(KC_6)); break;
-        case DOUBLE_SINGLE_TAP: tap_code16(RALT(KC_6)); break;
+        case DOUBLE_TAP: register_code16(RALT(KC_B)); break;
+        case DOUBLE_SINGLE_TAP: tap_code16(RALT(KC_B)); break;
     }
 }
 
@@ -308,8 +308,8 @@ void dance_3_reset(qk_tap_dance_state_t *state, void *user_data) {
     switch (dance_state.step) {
         case SINGLE_TAP: unregister_code16(RALT(KC_GRAVE)); break;
         case SINGLE_HOLD: unregister_code16(LSFT(RALT(KC_QUOTE))); break;
-        case DOUBLE_TAP: unregister_code16(RALT(KC_6)); break;
-        case DOUBLE_SINGLE_TAP: unregister_code16(RALT(KC_6)); break;
+        case DOUBLE_TAP: unregister_code16(RALT(KC_B)); break;
+        case DOUBLE_SINGLE_TAP: unregister_code16(RALT(KC_B)); break;
     }
     dance_state.step = 0;
 }
