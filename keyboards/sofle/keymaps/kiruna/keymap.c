@@ -6,7 +6,7 @@
 
 #define INDICATOR_BRIGHTNESS 30
 
-#define SET_ALL(hsv) {0, 70, hsv}
+#define SET_ALL(hsv) {0, 72, hsv}
 
 enum sofle_layers {
    _MAIN,
@@ -381,7 +381,7 @@ bool oled_task_user(void) {
 
 
 #ifdef RGBLIGHT_ENABLE
-char layer_state_str[70];
+char layer_state_str[72];
 
 const rgblight_segment_t PROGMEM layer_main_lights[] = RGBLIGHT_LAYER_SEGMENTS(
   SET_ALL(HSV_BLACK)
