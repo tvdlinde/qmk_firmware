@@ -45,10 +45,11 @@
 
 #ifdef RGBLIGHT_ENABLE
     #undef RGBLED_NUM
-
+/*
     #define RGBLED_NUM 70
 
     #define RGBLED_SPLIT { 35, 35 } // haven't figured out how to use this yet
+*/
 
     #define RGBLIGHT_LIMIT_VAL 120
     #define RGBLIGHT_HUE_STEP 10
