@@ -97,14 +97,16 @@ return false;
 // ------------------------------------------------------------------
 // 1️⃣  Declare a custom keycode (must be after SAFE_RANGE)
 enum custom_keycodes {
-    CTL_BSPC_TAP = SAFE_RANGE   // our special key
+    GUI_BSPC_TAP = SAFE_RANGE,   // our special key
+    GUI_QUOTE_TAP = SAFE_RANGE+1   // our special key
 };
 
 // ------------------------------------------------------------------
 // 2️⃣  Optional: give this key a shorter tapping term if you like
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case CTL_BSPC_TAP: return 180;   // ms – adjust to your taste
+        case GUI_BSPC_TAP: return 180;   // ms – adjust to your taste
+        case GUI_QUOTE_TAP: return 180;   // ms – adjust to your taste
         default:            return TAPPING_TERM;
     }
 }
@@ -115,22 +117,44 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static uint16_t press_timestamp;   // remembers when we pressed it
 
     switch (keycode) {
-        case CTL_BSPC_TAP:
+        case GUI_BSPC_TAP:
             if (record->event.pressed) {
                 // ----- key pressed -------------------------------------------------
                 press_timestamp = timer_read();           // remember the moment
-                register_mods(MOD_BIT(KC_LCTL));         // start holding Left‑Ctrl
+                register_mods(MOD_BIT(KC_LGUI));         // start holding Left‑Ctrl
             } else {
                 // ----- key released ------------------------------------------------
                 uint16_t held_time = timer_elapsed(press_timestamp);
 
                 // Always stop the Ctrl modifier we started
-                unregister_mods(MOD_BIT(KC_LCTL));
+                unregister_mods(MOD_BIT(KC_LGUI));
 
                 // If the press was short enough → treat it as a tap
                 if (held_time < get_tapping_term(keycode, record)) {
                     // Send Ctrl+Backspace as a single atomic action
                     tap_code16(LCTL(KC_BSPC));
+                }
+                // If it was a long hold we already left Ctrl active,
+                // so nothing else to do.
+            }
+            // We handled the key completely – stop further processing
+            return false;
+            case GUI_QUOTE_TAP:
+            if (record->event.pressed) {
+                // ----- key pressed -------------------------------------------------
+                press_timestamp = timer_read();           // remember the moment
+                register_mods(MOD_BIT(KC_LGUI));         // start holding Left‑Ctrl
+            } else {
+                // ----- key released ------------------------------------------------
+                uint16_t held_time = timer_elapsed(press_timestamp);
+
+                // Always stop the Ctrl modifier we started
+                unregister_mods(MOD_BIT(KC_LGUI));
+
+                // If the press was short enough → treat it as a tap
+                if (held_time < get_tapping_term(keycode, record)) {
+                    // Send Ctrl+Backspace as a single atomic action
+                    tap_code16(KC_QUOTE);
                 }
                 // If it was a long hold we already left Ctrl active,
                 // so nothing else to do.
@@ -150,7 +174,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+-------+--------+--------+--------+------|                        |--------+-------+--------+--------+--------+---------|
   KC_TAB,   KC_Q,   KC_W,    KC_F,    KC_P,    KC_B,                           KC_J,    KC_L,   KC_U,    KC_Y,    KC_SCLN, KC_BSLS,
   //|------+-------+--------+--------+--------+------|                        |--------+-------+--------+--------+--------+---------|
-CTL_BSPC_TAP, KC_A,   KC_R,    KC_S,    KC_T,    KC_G,                           KC_M,    KC_N,   KC_E,    KC_I,    KC_O,    KC_QUOTE,
+GUI_BSPC_TAP, KC_A,   KC_R,    KC_S,    KC_T,    KC_G,                           KC_M,    KC_N,   KC_E,    KC_I,    KC_O,    GUI_QUOTE_TAP,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
   SC_LSPO,  KC_Z,   KC_X,    TD(TD_1),KC_D,    KC_V, KC_MUTE,       LCTL(KC_Z),KC_K,    KC_H,   KC_COMM, KC_DOT,  KC_SLSH, SC_RSPC,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
@@ -163,7 +187,7 @@ CTL_BSPC_TAP, KC_A,   KC_R,    KC_S,    KC_T,    KC_G,                          
   //|------+-------+--------+--------+--------+------|                        |--------+-------+--------+--------+--------+---------|
   LCTL(KC_DEL),KC_TRNS,KC_TRNS,KC_LCBR,KC_RCBR,KC_TRNS,                       KC_GRAVE, KC_P7,  KC_P8,   KC_P9,  KC_TRNS,KC_TRNS,
   //|------+-------+--------+--------+--------+------|                        |--------+-------+--------+--------+--------+---------|
-  KC_CAPS,KC_TRNS,KC_MINUS,KC_LPRN,KC_RPRN,KC_DLR,                      KC_MINUS, KC_P4,  KC_P5,   KC_P6,   KC_KP_PLUS,KC_TRNS,
+  KC_CAPS,KC_TRNS,KC_MINUS,KC_LPRN,KC_RPRN,KC_DLR,                      KC_MINUS, KC_P4,  KC_P5,   KC_P6,   KC_KP_PLUS,KC_QUOTE,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
     KC_LBRC,KC_TRNS,KC_TRNS, KC_LBRC, KC_RBRC, KC_TRNS,LGUI(KC_F4),          KC_TRNS,KC_TRNS,  KC_P1,  KC_P2,   KC_P3,   KC_TRNS, KC_RBRC,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
