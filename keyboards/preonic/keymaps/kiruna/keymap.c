@@ -74,14 +74,16 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 // ------------------------------------------------------------------
 // 1️⃣  Declare a custom keycode (must be after SAFE_RANGE)
 enum custom_keycodes {
-    CTL_BSPC_TAP = SAFE_RANGE   // our special key
+    GUI_BSPC_TAP = SAFE_RANGE,   // our special key
+    GUI_QUOTE_TAP = SAFE_RANGE+1   // our special key
 };
 
 // ------------------------------------------------------------------
 // 2️⃣  Optional: give this key a shorter tapping term if you like
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case CTL_BSPC_TAP: return 180;   // ms – adjust to your taste
+        case GUI_BSPC_TAP: return 180;   // ms – adjust to your taste
+        case GUI_QUOTE_TAP: return 180;   // ms – adjust to your taste
         default:            return TAPPING_TERM;
     }
 }
@@ -92,22 +94,44 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static uint16_t press_timestamp;   // remembers when we pressed it
 
     switch (keycode) {
-        case CTL_BSPC_TAP:
+        case GUI_BSPC_TAP:
             if (record->event.pressed) {
                 // ----- key pressed -------------------------------------------------
                 press_timestamp = timer_read();           // remember the moment
-                register_mods(MOD_BIT(KC_LCTL));         // start holding Left‑Ctrl
+                register_mods(MOD_BIT(KC_LGUI));         // start holding Left‑Ctrl
             } else {
                 // ----- key released ------------------------------------------------
                 uint16_t held_time = timer_elapsed(press_timestamp);
 
                 // Always stop the Ctrl modifier we started
-                unregister_mods(MOD_BIT(KC_LCTL));
+                unregister_mods(MOD_BIT(KC_LGUI));
 
                 // If the press was short enough → treat it as a tap
                 if (held_time < get_tapping_term(keycode, record)) {
                     // Send Ctrl+Backspace as a single atomic action
                     tap_code16(LCTL(KC_BSPC));
+                }
+                // If it was a long hold we already left Ctrl active,
+                // so nothing else to do.
+            }
+            // We handled the key completely – stop further processing
+            return false;
+            case GUI_QUOTE_TAP:
+            if (record->event.pressed) {
+                // ----- key pressed -------------------------------------------------
+                press_timestamp = timer_read();           // remember the moment
+                register_mods(MOD_BIT(KC_LGUI));         // start holding Left‑Ctrl
+            } else {
+                // ----- key released ------------------------------------------------
+                uint16_t held_time = timer_elapsed(press_timestamp);
+
+                // Always stop the Ctrl modifier we started
+                unregister_mods(MOD_BIT(KC_LGUI));
+
+                // If the press was short enough → treat it as a tap
+                if (held_time < get_tapping_term(keycode, record)) {
+                    // Send Ctrl+Backspace as a single atomic action
+                    tap_code16(KC_QUOTE);
                 }
                 // If it was a long hold we already left Ctrl active,
                 // so nothing else to do.
@@ -123,9 +147,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MAIN] = LAYOUT_ortho_5x12(
        KC_GRAVE,              KC_1,                KC_2,          KC_3,            KC_4,          KC_5,              KC_6,              KC_7,             KC_8,           KC_9,           KC_0,                KC_MINUS,
-       KC_TAB,                KC_Q,                KC_W,          KC_F,            KC_P,          KC_B,              KC_J,              KC_L,             KC_U,           KC_Y,           KC_SCOLON,           KC_BSLASH,
-      CTL_BSPC_TAP,              KC_A,                KC_R,          KC_S,            KC_T,          KC_G,              KC_M,              KC_N,             KC_E,           KC_I,           KC_O,                KC_QUOTE,
-       KC_LSPO,               KC_Z,                KC_X,          TD(TD_1),        KC_D,          KC_V,              KC_K,              KC_H,             KC_COMMA,       KC_DOT,         KC_SLASH,            KC_RSPC,
+       KC_TAB,                KC_Q,                KC_W,          KC_F,            KC_P,          KC_B,              KC_J,              KC_L,             KC_U,           KC_Y,           KC_SCLN,           KC_BSLS,
+      GUI_BSPC_TAP,              KC_A,                KC_R,          KC_S,            KC_T,          KC_G,              KC_M,              KC_N,             KC_E,           KC_I,           KC_O,                 GUI_QUOTE_TAP,
+       SC_LSPO,               KC_Z,                KC_X,          TD(TD_1),        KC_D,          KC_V,              KC_K,              KC_H,             KC_COMMA,       KC_DOT,         KC_SLASH,            SC_RSPC,
        LCTL(KC_Z),            LCTL_T(KC_F12),      KC_LGUI,       TD(TD_5),        TD(TD_2),      LT(_GRN,KC_SPACE), LT(_BLU,KC_SPACE), TD(TD_3),         KC_ESCAPE,      KC_LALT,        RCTL_T(KC_F12),      RSFT_T(KC_ENTER)),
     [_BLU] = LAYOUT_ortho_5x12(
        KC_TRNS,               KC_F1,               KC_F2,         KC_F3,           KC_F4,         KC_F5,             KC_F6,             KC_F7,            KC_F8,          KC_F9,          KC_F10,              KC_EQUAL,
@@ -135,9 +159,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        LCTL(KC_Z),      KC_TRNS,             KC_TRNS,       RALT(KC_LBRC), RALT(KC_RBRC), LM(_RED,MOD_LGUI),  KC_TRNS,           KC_TRNS,          KC_P0,          KC_BSPC,        KC_PDOT,             KC_TRNS),
     [_GRN] = LAYOUT_ortho_5x12(
        KC_TRNS,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           KC_TRNS,           LALT(KC_LEFT),          KC_PGUP,        LALT(KC_RGHT),         LALT(KC_A),             KC_EQUAL,
-       LCTL(KC_DEL),          KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           KC_TRNS,           KC_HOME,    KC_UP,          KC_END,  KC_TRNS,             LCTL(LSFT(KC_BSLASH)),
-       KC_BSPACE,         KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           LCTL(KC_LEFT),     KC_LEFT,          KC_DOWN,        KC_RGHT,        LCTL(KC_RGHT),       KC_TRNS,
-       KC_LCPO,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           LCTL(KC_BSPC),     KC_BSPACE,        KC_PGDOWN,      KC_DELETE,      LCTL(KC_DEL),        KC_RCPC,
+       LCTL(KC_DEL),          KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           KC_TRNS,           KC_HOME,    KC_UP,          KC_END,  KC_TRNS,             LCTL(LSFT(KC_BSLS)),
+       KC_BSPC,         KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           LCTL(KC_LEFT),     KC_LEFT,          KC_DOWN,        KC_RGHT,        LCTL(KC_RGHT),       KC_TRNS,
+       SC_LCPO,               KC_TRNS,             KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS,           LCTL(KC_BSPC),     KC_BSPC,        KC_PGDN,      KC_DELETE,      LCTL(KC_DEL),        SC_RCPC,
        LCTL(KC_K),             RESET,       LGUI(KC_INS),  LCTL(KC_U),    KC_TRNS,       KC_TRNS,           LM(_RED,MOD_LGUI),  KC_TRNS,          LCTL(KC_L),        KC_TRNS,        KC_TRNS,             KC_TRNS),
     [_RED] = LAYOUT_ortho_5x12(
        KC_TRNS,               KC_1,               KC_2,         KC_3,           KC_4,         KC_5,             KC_6,             KC_7,            KC_8,          KC_9,          KC_0,              KC_TRNS,
@@ -313,7 +337,7 @@ void dance_3_reset(tap_dance_state_t *state, void *user_data) {
     dance_state.step = 0;
 }
 
-qk_tap_dance_action_t tap_dance_actions[] = {
+tap_dance_action_t tap_dance_actions[] = {
     [TD_1] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_1, dance_1_finished, dance_1_reset),
     [TD_2] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_2, dance_2_finished, dance_2_reset),
     [TD_3] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_3, dance_3_finished, dance_3_reset),
