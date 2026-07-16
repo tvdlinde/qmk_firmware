@@ -2,6 +2,7 @@
 
 #define PERMISSIVE_HOLD
 #define CHORDAL_HOLD
+#define FLOW_TAP_TERM 150   // during a typing streak, tap-hold keys resolve as tap
 
 #define NO_AUTO_SHIFT_ALPHA
 
