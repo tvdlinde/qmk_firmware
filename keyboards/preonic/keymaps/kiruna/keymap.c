@@ -71,73 +71,28 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return state;
 };
 
-// ------------------------------------------------------------------
-// 1️⃣  Declare a custom keycode (must be after SAFE_RANGE)
-enum custom_keycodes {
-    GUI_BSPC_TAP = SAFE_RANGE,   // our special key
-    GUI_QUOTE_TAP = SAFE_RANGE+1   // our special key
-};
-
-// ------------------------------------------------------------------
-// 2️⃣  Optional: give this key a shorter tapping term if you like
+// The two GUI home-pinky keys are ordinary mod-taps (LGUI_T on backspace and quote);
+// give them a slightly shorter tapping term than the global default.
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case GUI_BSPC_TAP: return 180;   // ms – adjust to your taste
-        case GUI_QUOTE_TAP: return 180;   // ms – adjust to your taste
+        case LGUI_T(KC_BSPC): return 180;   // ms – adjust to your taste
+        case LGUI_T(KC_QUOTE): return 180;   // ms – adjust to your taste
         default:            return TAPPING_TERM;
     }
 }
 
-// ------------------------------------------------------------------
-// 3️⃣  Core logic – run on every press/release of the custom key
+// Only the backspace mod-tap needs custom handling (its tap sends Ctrl+Backspace).
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    static uint16_t press_timestamp;   // remembers when we pressed it
-
     switch (keycode) {
-        case GUI_BSPC_TAP:
-            if (record->event.pressed) {
-                // ----- key pressed -------------------------------------------------
-                press_timestamp = timer_read();           // remember the moment
-                register_mods(MOD_BIT(KC_LGUI));         // start holding Left‑Ctrl
-            } else {
-                // ----- key released ------------------------------------------------
-                uint16_t held_time = timer_elapsed(press_timestamp);
-
-                // Always stop the Ctrl modifier we started
-                unregister_mods(MOD_BIT(KC_LGUI));
-
-                // If the press was short enough → treat it as a tap
-                if (held_time < get_tapping_term(keycode, record)) {
-                    // Send Ctrl+Backspace as a single atomic action
-                    tap_code16(LCTL(KC_BSPC));
-                }
-                // If it was a long hold we already left Ctrl active,
-                // so nothing else to do.
+        case LGUI_T(KC_BSPC):
+            // Now a genuine mod-tap: hold = Left GUI (decided by QMK's tap-hold engine,
+            // so Flow Tap and Chordal Hold apply). Override only the TAP so it emits
+            // Ctrl+Backspace (delete word) instead of a bare Backspace.
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(LCTL(KC_BSPC));
+                return false;
             }
-            // We handled the key completely – stop further processing
-            return false;
-            case GUI_QUOTE_TAP:
-            if (record->event.pressed) {
-                // ----- key pressed -------------------------------------------------
-                press_timestamp = timer_read();           // remember the moment
-                register_mods(MOD_BIT(KC_LGUI));         // start holding Left‑Ctrl
-            } else {
-                // ----- key released ------------------------------------------------
-                uint16_t held_time = timer_elapsed(press_timestamp);
-
-                // Always stop the Ctrl modifier we started
-                unregister_mods(MOD_BIT(KC_LGUI));
-
-                // If the press was short enough → treat it as a tap
-                if (held_time < get_tapping_term(keycode, record)) {
-                    // Send Ctrl+Backspace as a single atomic action
-                    tap_code16(KC_QUOTE);
-                }
-                // If it was a long hold we already left Ctrl active,
-                // so nothing else to do.
-            }
-            // We handled the key completely – stop further processing
-            return false;
+            break;
     }
 
     // All other keys fall through to the default handler
@@ -148,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MAIN] = LAYOUT_ortho_5x12(
        KC_GRAVE,              KC_1,                KC_2,          KC_3,            KC_4,          KC_5,              KC_6,              KC_7,             KC_8,           KC_9,           KC_0,                KC_MINUS,
        KC_TAB,                KC_Q,                KC_W,          KC_F,            KC_P,          KC_B,              KC_J,              KC_L,             KC_U,           KC_Y,           KC_SCLN,           KC_BSLS,
-      GUI_BSPC_TAP,              KC_A,                KC_R,          KC_S,            KC_T,          KC_G,              KC_M,              KC_N,             KC_E,           KC_I,           KC_O,                 GUI_QUOTE_TAP,
+      LGUI_T(KC_BSPC),              KC_A,                KC_R,          KC_S,            KC_T,          KC_G,              KC_M,              KC_N,             KC_E,           KC_I,           KC_O,                 LGUI_T(KC_QUOTE),
        SC_LSPO,               KC_Z,                KC_X,          TD(TD_1),        KC_D,          KC_V,              KC_K,              KC_H,             KC_COMMA,       KC_DOT,         KC_SLASH,            SC_RSPC,
        LCTL(KC_Z),            LCTL_T(KC_F12),      KC_LGUI,       TD(TD_5),        TD(TD_2),      LT(_GRN,KC_SPACE), LT(_BLU,KC_SPACE), TD(TD_3),         KC_ESCAPE,      KC_LALT,        RCTL_T(KC_F12),      RSFT_T(KC_ENTER)),
     [_BLU] = LAYOUT_ortho_5x12(
