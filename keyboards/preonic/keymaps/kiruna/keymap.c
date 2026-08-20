@@ -81,6 +81,25 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
+// Flow Tap is for the home-pinky mod-taps; the thumb layer-taps to _GRN/_BLU
+// live on Space, which Flow Tap's default alphabet also covers. Without this
+// override, holding one right after a fast keystroke (i.e. most of the time)
+// resolves as a bare space instead of activating the layer. Force those two
+// keys to always honor a real hold, and leave the default behavior for
+// everything else Flow Tap applies to.
+uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t *record, uint16_t prev_keycode) {
+    switch (keycode) {
+        case LT(_GRN, KC_SPACE):
+        case LT(_BLU, KC_SPACE):
+            return 0;
+        default:
+            if (is_flow_tap_key(keycode) && is_flow_tap_key(prev_keycode)) {
+                return FLOW_TAP_TERM;
+            }
+            return 0;
+    }
+}
+
 // Only the backspace mod-tap needs custom handling (its tap sends Ctrl+Backspace).
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
