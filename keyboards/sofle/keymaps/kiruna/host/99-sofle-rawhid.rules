@@ -1,0 +1,3 @@
+# Let the logged-in user talk to the Sofle's Raw HID interface (host/sofle_status.py).
+# Install: sudo cp 99-sofle-rawhid.rules /etc/udev/rules.d/ && sudo udevadm control --reload && sudo udevadm trigger
+KERNEL=="hidraw*", ATTRS{idVendor}=="fc32", ATTRS{idProduct}=="0287", TAG+="uaccess"

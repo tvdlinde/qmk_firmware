@@ -20,6 +20,13 @@
 
 #define CUSTOM_LAYER_READ //if you remove this it causes issues - needs better guarding
 
+// OLED status screens (fed over Raw HID by host/sofle_status.py)
+#define OLED_FONT_END 127   // ASCII only: drops the logo glyphs, saves flash
+#define OLED_TIMEOUT 0      // screen on/off handled in oled_task_user()
+#define SPLIT_TRANSACTION_IDS_USER USER_SYNC_STATUS
+#define NO_ACTION_ONESHOT   // no one-shot keys in this keymap; frees flash for the OLEDs
+#define LAYER_STATE_8BIT    // only 4 layers
+
 
 #define TAPPING_FORCE_HOLD
 #ifdef TAPPING_TERM

@@ -389,53 +389,202 @@ tap_dance_action_t tap_dance_actions[] = {
 
 #ifdef OLED_ENABLE
 
-static void render_logo(void) {
-    static const char PROGMEM qmk_logo[] = {
-        0x80, 0x81, 0x82, 0x83, 0x84, 0x85, 0x86, 0x87, 0x88, 0x89, 0x8A, 0x8B, 0x8C, 0x8D, 0x8E, 0x8F, 0x90, 0x91, 0x92, 0x93, 0x94,
-        0xA0, 0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6, 0xA7, 0xA8, 0xA9, 0xAA, 0xAB, 0xAC, 0xAD, 0xAE, 0xAF, 0xB0, 0xB1, 0xB2, 0xB3, 0xB4,
-        0xC0, 0xC1, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6, 0xC7, 0xC8, 0xC9, 0xCA, 0xCB, 0xCC, 0xCD, 0xCE, 0xCF, 0xD0, 0xD1, 0xD2, 0xD3, 0xD4, 0x00
-    };
+#include "raw_hid.h"
+#include "transactions.h"
 
-    oled_write_P(qmk_logo, false);
+// Status packet from host/sofle_status.py (32-byte Raw HID report, ~1 Hz).
+// Bytes 8..12 are the right-half fields; they are forwarded to the slave.
+#define STATUS_MAGIC  0x5A
+enum {
+    ST_MAGIC, ST_HOUR, ST_MIN, ST_DAY, ST_MONTH, ST_VOL, ST_FLAGS, ST_BAT,
+    ST_LOAD_LO, ST_LOAD_HI, ST_CPU, ST_DISK, ST_MEM, ST_LEN
+};
+#define ST_RIGHT      ST_LOAD_LO
+#define ST_RIGHT_LEN  (ST_LEN - ST_RIGHT)
+#define FLAG_MUTED    0x01
+#define FLAG_CHARGING 0x02
+#define FLAG_NO_BAT   0x04
+
+#define STATUS_STALE_MS 5000   // fields show "--" after this long without data
+#define OLED_IDLE_MS    60000  // screen off when no data and no typing for this long
+
+static uint8_t  status[ST_LEN];
+static uint32_t last_rx;
+static bool     have_rx;
+static bool     forward_pending;
+
+void raw_hid_receive(uint8_t *data, uint8_t length) {
+    if (length < ST_LEN || data[ST_MAGIC] != STATUS_MAGIC) {
+        return;
+    }
+    memcpy(status, data, ST_LEN);
+    last_rx         = timer_read32();
+    have_rx         = true;
+    forward_pending = true;
 }
 
-static void print_status_narrow(void) {
-    // Print current mode
-    oled_write_P(PSTR("\n\n"), false);
-    oled_write_ln_P(PSTR("Tim\nVdL"), false);
+static void status_slave_handler(uint8_t in_len, const void *in_data, uint8_t out_len, void *out_data) {
+    if (in_len == ST_RIGHT_LEN) {
+        memcpy(&status[ST_RIGHT], in_data, ST_RIGHT_LEN);
+        last_rx = timer_read32();
+        have_rx = true;
+    }
+}
 
-    oled_write_ln_P(PSTR(""), false);
+static void status_init(void) {
+    transaction_register_rpc(USER_SYNC_STATUS, status_slave_handler);
+}
 
-    oled_write_P(PSTR("\n\n"), false);
-    // Print current layer
-    oled_write_ln_P(PSTR("LAYER"), false);
+void housekeeping_task_user(void) {
+    if (forward_pending && is_keyboard_master()) {
+        if (transaction_rpc_send(USER_SYNC_STATUS, ST_RIGHT_LEN, &status[ST_RIGHT])) {
+            forward_pending = false;
+        }
+    }
+}
+
+// The screens are rotated to portrait: 5 characters x 16 rows.
+static char line[6];
+
+static void line_clear(void) {
+    memset(line, ' ', 5);
+    line[5] = 0;
+}
+
+static void put_2d(uint8_t pos, uint8_t v) {
+    line[pos]     = '0' + v / 10 % 10;
+    line[pos + 1] = '0' + v % 10;
+}
+
+// Right-aligned 0..255 ending at pos.
+static void put_num(uint8_t pos, uint8_t v) {
+    do {
+        line[pos--] = '0' + v % 10;
+        v /= 10;
+    } while (v);
+}
+
+static void write_row(uint8_t row) {
+    oled_set_cursor(0, row);
+    oled_write(line, false);
+}
+
+static void write_label(uint8_t row, const char *label) {
+    oled_set_cursor(0, row);
+    oled_write_P(label, false);
+}
+
+// "  23%" or "   --"
+static void write_pct(uint8_t row, uint8_t v, bool fresh) {
+    line_clear();
+    if (fresh) {
+        put_num(3, v);
+        line[4] = '%';
+    } else {
+        line[3] = line[4] = '-';
+    }
+    write_row(row);
+}
+
+static void render_left(bool fresh) {
+    line_clear();
+    if (fresh) {
+        put_2d(0, status[ST_HOUR]);
+        line[2] = ':';
+        put_2d(3, status[ST_MIN]);
+    } else {
+        line[0] = line[1] = line[3] = line[4] = '-';
+        line[2] = ':';
+    }
+    write_row(0);
+    line_clear();
+    if (fresh) {
+        put_2d(0, status[ST_DAY]);
+        line[2] = '/';
+        put_2d(3, status[ST_MONTH]);
+    }
+    write_row(1);
+
+    write_label(3, PSTR("Vol  "));
+    if (fresh && (status[ST_FLAGS] & FLAG_MUTED)) {
+        write_label(4, PSTR(" mute"));
+    } else {
+        write_pct(4, status[ST_VOL], fresh);
+    }
+
+    write_label(6, PSTR("Bat  "));
+    if (fresh && (status[ST_FLAGS] & FLAG_NO_BAT)) {
+        write_label(7, PSTR("  AC "));
+    } else {
+        write_pct(7, status[ST_BAT], fresh);
+        if (fresh && (status[ST_FLAGS] & FLAG_CHARGING)) {
+            oled_set_cursor(0, 7);
+            oled_write_char('+', false);
+        }
+    }
+
+    write_label(13, PSTR("LAYER"));
     switch (get_highest_layer(layer_state)) {
         case _RED:
-            oled_write_P(PSTR("Red  "), false);
+            write_label(14, PSTR("Red  "));
             break;
         case _BLU:
-            oled_write_P(PSTR("Blue"), false);
+            write_label(14, PSTR("Blue "));
             break;
         case _GRN:
-            oled_write_P(PSTR("Green"), false);
+            write_label(14, PSTR("Green"));
             break;
         default:
-            oled_write_ln_P(PSTR("Base"), false);
+            write_label(14, PSTR("Base "));
     }
+}
+
+static void render_right(bool fresh) {
+    write_label(0, PSTR("Load "));
+    line_clear();
+    if (fresh) {
+        // load average x100 -> " 1.24" / "12.40" / "  99+" (beyond 99.99)
+        uint16_t load = status[ST_LOAD_LO] | (status[ST_LOAD_HI] << 8);
+        if (load > 9999) {
+            line[2] = line[3] = '9';
+            line[4] = '+';
+        } else {
+            put_2d(3, load % 100);
+            line[2] = '.';
+            put_num(1, load / 100);
+        }
+    } else {
+        line[3] = line[4] = '-';
+    }
+    write_row(1);
+
+    write_label(3, PSTR("CPU  "));
+    write_pct(4, status[ST_CPU], fresh);
+    write_label(6, PSTR("Disk "));
+    write_pct(7, status[ST_DISK], fresh);
+    write_label(9, PSTR("Mem  "));
+    write_pct(10, status[ST_MEM], fresh);
 }
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-    if (is_keyboard_master()) {
-        return OLED_ROTATION_270;
-    }
-    return rotation;
+    return OLED_ROTATION_270;
 }
 
 bool oled_task_user(void) {
+    bool fresh = have_rx && timer_elapsed32(last_rx) < STATUS_STALE_MS;
+
+    // Keep the screens on while data flows (or, on the master, while typing);
+    // blank them otherwise to spare the OLEDs.
+    if (!fresh && (!is_keyboard_master() || last_input_activity_elapsed() > OLED_IDLE_MS)) {
+        oled_off();
+        return false;
+    }
+    oled_on();
+
     if (is_keyboard_master()) {
-        print_status_narrow();
+        render_left(fresh);
     } else {
-        render_logo();
+        render_right(fresh);
     }
     return false;
 }
@@ -486,6 +635,10 @@ void keyboard_post_init_user(void) {
     rgblight_layers = my_rgb_layers;
 
     rgblight_mode(10);// haven't found a way to set this in a more useful way
+
+#ifdef OLED_ENABLE
+    status_init();
+#endif
 
 }
 #endif

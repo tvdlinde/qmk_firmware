@@ -1,0 +1,14 @@
+# systemd user unit. Install:
+#   ln -s "$PWD/sofle-status.service" ~/.config/systemd/user/
+#   systemctl --user daemon-reload && systemctl --user enable --now sofle-status
+[Unit]
+Description=Sofle keyboard OLED status feeder
+After=pipewire.service
+
+[Service]
+ExecStart=/usr/bin/python3 %h/Linux/qmk_firmware/keyboards/sofle/keymaps/kiruna/host/sofle_status.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target
