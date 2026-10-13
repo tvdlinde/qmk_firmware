@@ -1,3 +1,5 @@
 # Let the logged-in user talk to the Sofle's Raw HID interface (host/sofle_status.py).
+# Only needed if /dev/hidrawN for the keyboard is not already user-accessible
+# (on Tim's laptop an existing rule already grants a uaccess ACL).
 # Install: sudo cp 99-sofle-rawhid.rules /etc/udev/rules.d/ && sudo udevadm control --reload && sudo udevadm trigger
 KERNEL=="hidraw*", ATTRS{idVendor}=="fc32", ATTRS{idProduct}=="0287", TAG+="uaccess"

@@ -100,14 +100,33 @@ def describe(p):
             f"load {(p[8] | p[9] << 8) / 100:.2f}  cpu {p[10]}%  disk {p[11]}%  mem {p[12]}%")
 
 
-def open_keyboard():
-    import hid
-    for d in hid.enumerate(VID, PID):
-        if d["usage_page"] == USAGE_PAGE and d["usage"] == USAGE:
-            dev = hid.device()
-            dev.open_path(d["path"])
-            return dev
+def find_rawhid():
+    """/dev/hidrawN of the keyboard's Raw HID interface, found via sysfs.
+
+    Uses the kernel hidraw nodes directly rather than the python hid module:
+    Debian's build of that uses the libusb backend, which reports no usage
+    page and would detach the kernel driver from the keyboard.
+    """
+    hid_id = f"HID_ID=0003:{VID:08X}:{PID:08X}"
+    # Report descriptor starts with Usage Page (0xFF60), Usage (0x61).
+    want = bytes([0x06, USAGE_PAGE & 0xFF, USAGE_PAGE >> 8, 0x09, USAGE])
+    for node in sorted(os.listdir("/sys/class/hidraw")):
+        dev = f"/sys/class/hidraw/{node}/device"
+        try:
+            with open(f"{dev}/uevent") as f:
+                if hid_id not in f.read().upper():
+                    continue
+            with open(f"{dev}/report_descriptor", "rb") as f:
+                if f.read(len(want)) == want:
+                    return f"/dev/{node}"
+        except OSError:
+            continue
     return None
+
+
+def open_keyboard():
+    path = find_rawhid()
+    return os.open(path, os.O_WRONLY) if path else None
 
 
 def sleep_to_next_second():
@@ -140,10 +159,10 @@ def main():
             print("connected", flush=True)
             warned = False
         try:
-            dev.write(b"\x00" + packet)  # leading report ID 0
-        except (OSError, ValueError):
+            os.write(dev, b"\x00" + packet)  # leading report ID 0 (unnumbered reports)
+        except OSError:
             print("disconnected", flush=True)
-            dev.close()
+            os.close(dev)
             dev = None
 
 

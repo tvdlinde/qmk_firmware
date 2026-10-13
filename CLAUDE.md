@@ -100,10 +100,34 @@ Oryx-exported keymap that follows its own conventions — see below):
 - **Encoder**: layer-dependent behavior in `encoder_update_user()` — volume by
   default, virtual desktop switch / workspace scroll / undo-redo depending on
   which momentary layer is held.
-- Sofle additionally carries RGB matrix/OLED config groundwork
-  (`RGB_MATRIX_ENABLE`/`OLED_ENABLE` guards exist in `config.h` but both
-  default `off` in `rules.mk`) and `MASTER_LEFT`/custom split-specific
-  defines — most of that block is dormant scaffolding, not active behavior.
+- Sofle additionally carries RGB matrix config groundwork
+  (`RGB_MATRIX_ENABLE` guards in `config.h`, off in `rules.mk`) and
+  `MASTER_LEFT`/custom split-specific defines — that block is dormant
+  scaffolding, not active behavior.
+
+### Sofle OLED status screens (live since 2026-10-13)
+
+Both 128×32 OLEDs are rotated to portrait (5 chars × 16 rows) and fed by a
+host daemon: left = time, date, volume, laptop battery, layer name; right =
+load average, CPU, disk busy, memory.
+
+- **Host side** (`keyboards/sofle/keymaps/kiruna/host/`): `sofle_status.py`
+  writes a 32-byte Raw HID packet once a second straight to `/dev/hidrawN`
+  (found via sysfs by VID/PID + usage page `0xFF60`; it deliberately avoids
+  the Debian `hid` module, whose libusb backend reports no usage page). It
+  pauses while `swaylock` runs so the screens blank when locked. Runs as the
+  systemd user unit `sofle-status` (symlinked into `~/.config/systemd/user/`).
+  `--print` mode dry-runs without the keyboard. The udev rule is optional on
+  this laptop (an existing rule already grants access).
+- **Firmware**: `raw_hid_receive()` on the master stores the packet; bytes
+  8–12 are forwarded to the right half by split RPC (`USER_SYNC_STATUS`). The
+  packet layout is the `ST_*` enum in `keymap.c` and must stay in sync with
+  `sofle_status.py`. Values show `--` after 5 s without data; screens blank
+  when stale (master stays on for 60 s after typing, for the layer name).
+- **Flash budget is tight** (Pro Micro, ~720 bytes free): to fit, MOUSEKEY
+  and COMMAND are off, the font is ASCII-only (`OLED_FONT_END 127`), plus
+  `NO_ACTION_ONESHOT` and `LAYER_STATE_8BIT`. Check the size line after any
+  Sofle change. Both halves must run the same firmware.
 
 When editing a keymap, change the matching board's `keymap.c`/`config.h`
 directly; there's no shared userspace module between the boards (no `users/`
