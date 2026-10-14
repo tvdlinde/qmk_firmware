@@ -4,9 +4,10 @@
 
 #define HYP(kc) MT(MOD_LSFT | MOD_LALT | MOD_LCTL | MOD_LGUI, kc)
 
-#define INDICATOR_BRIGHTNESS 30
+#define INDICATOR_BRIGHTNESS 90  // layer underglow; was 120 (RGBLIGHT_LIMIT_VAL), dimmed to ease right-OLED noise
 
 #define SET_ALL(hsv) {0, 72, hsv}
+#define SET_ALL_DIM(hue) {0, 72, hue, 255, INDICATOR_BRIGHTNESS}
 
 enum sofle_layers {
    _MAIN,
@@ -600,15 +601,15 @@ const rgblight_segment_t PROGMEM layer_main_lights[] = RGBLIGHT_LAYER_SEGMENTS(
 );
 
 const rgblight_segment_t PROGMEM layer_blu_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    SET_ALL(HSV_BLUE)
+    SET_ALL_DIM(170)  // HSV_BLUE hue
     );
 
 const rgblight_segment_t PROGMEM layer_grn_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-    SET_ALL(HSV_GREEN)
+    SET_ALL_DIM(85)   // HSV_GREEN hue
 );
 
 const rgblight_segment_t PROGMEM layer_red_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-  SET_ALL(HSV_RED)
+  SET_ALL_DIM(0)    // HSV_RED hue
 );
 
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
