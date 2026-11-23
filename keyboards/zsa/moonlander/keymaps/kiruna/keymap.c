@@ -341,8 +341,27 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
             // Fall back to the default (wait for tapping term / release) so
             // deliberate holds still reach the layer.
             return false;
+        case DUAL_FUNC_0:
+        case MT(MOD_RGUI, KC_QUOTE):
+            // Home-pinky GUI keys: an opposite-hand roll (e.g. ' then s, or
+            // Ctrl+Backspace then n) would otherwise resolve as GUI+key the
+            // moment the next key goes down. Use permissive hold instead
+            // (see get_permissive_hold), like Preonic/Sofle.
+            return false;
         default:
             return true;
+    }
+}
+
+bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case DUAL_FUNC_0:
+        case MT(MOD_RGUI, KC_QUOTE):
+            // Hold only if another key is pressed *and released* while the
+            // pinky key is down; a roll still counts as a tap.
+            return true;
+        default:
+            return false;
     }
 }
 

@@ -89,10 +89,14 @@ Oryx-exported keymap that follows its own conventions — see below):
   RGB underglow color in `layer_state_set_user` when `RGBLIGHT_ENABLE`.
 - **Tap-hold tuning**: `PERMISSIVE_HOLD`, `CHORDAL_HOLD`, and `FLOW_TAP_TERM
   150` are set in `config.h` — during a fast typing streak, tap-hold keys
-  resolve as taps (QMK's Flow Tap feature). `TAPPING_TERM` is 200ms.
+  resolve as taps (QMK's Flow Tap feature). `TAPPING_TERM` is 200ms. Note that
+  Flow Tap's default `is_flow_tap_key()` only covers letters, Space and
+  `. , ; /`, so in practice it applies to none of these keymaps' tap-hold keys
+  (pinky keys tap Backspace/quote, Space layer-taps are overridden to 0).
 - **Home-pinky mod-taps**: the GUI home-pinky keys (`LGUI_T` on
-  backspace/quote) are ordinary mod-taps with a shorter per-key tapping term
-  (180ms) via `get_tapping_term()`. The backspace one is special-cased in
+  backspace/quote) are ordinary mod-taps. `get_tapping_term()` asks for
+  180ms on them, but `TAPPING_TERM_PER_KEY` is not defined, so it is dead
+  code (the linker drops it) and they use the 200ms default. The backspace one is special-cased in
   `process_record_user()` so its *tap* sends Ctrl+Backspace (delete word)
   while its *hold* still resolves as GUI through QMK's normal tap-hold engine.
 - **Tap dances**: `TD_1`–`TD_5`, mostly for Belgian-French dead-key/accent
@@ -145,6 +149,13 @@ via `LT(2, KC_SPACE)` etc.), not named like `_MAIN`/`_GRN`/`_BLU`/`_RED`, and
 tap/hold on several keys (`DUAL_FUNC_0`-`DUAL_FUNC_5`) is handled by hand in
 `process_record_user()` via `record->tap.count` instead of relying on QMK's
 built-in `LT()`/`MT()` resolution.
+
+The two home-pinky GUI keys (`DUAL_FUNC_0` = tap Ctrl+Backspace, and
+`MT(MOD_RGUI, KC_QUOTE)`) are exempt from hold-on-other-key-press and instead
+use permissive hold via `PERMISSIVE_HOLD_PER_KEY` / `get_permissive_hold()`
+(2026-11-23), matching Preonic/Sofle: hold-on-other-key-press turned
+opposite-hand rolls like `'s` into GUI+key. Permissive hold is per-key on
+purpose — enabling it globally would also change the Space layer-taps.
 
 The two thumb-row `LT(2, KC_SPACE)` / `LT(1, KC_SPACE)` keys had the
 Moonlander analogue of the Preonic/Sofle Flow Tap bug: Space is the
