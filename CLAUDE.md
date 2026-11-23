@@ -16,6 +16,8 @@ three personal keymaps, all named **`kiruna`**:
   of keycode renames (legacy RGBLIGHT keycodes → `RM_*` RGB Matrix keycodes,
   `KC_MS_BTN1/2` → `MS_BTN1/2`) and dropping the `keymap.json` `"modules":
   ["zsa/defaults"]` reference (that community module only exists in ZSA's fork).
+  The C key's ç was also moved from Oryx's tap-then-hold (`DOUBLE_HOLD`) to a
+  plain hold (`SINGLE_HOLD`) in `dance_0_*`, matching Preonic/Sofle `TD_1`.
   Re-exporting from Oryx later will likely need the same fixups reapplied.
 
 Remotes: `origin` = `git@github.com:tvdlinde/qmk_firmware.git` (Tim's fork),
@@ -33,9 +35,8 @@ Branches:
 There is a project skill at `~/.claude/skills/qmk/SKILL.md` (invoke as `/qmk`)
 that automates the whole upstream-sync workflow: fetch upstream → fast-forward
 `master` → merge into `personal-keymaps` → sync submodules → compile the
-keymaps → push to `origin` if builds pass. As of 2026-09-08 it only compiles
-Preonic + Sofle; extend it to also compile the Moonlander `kiruna` keymap next
-time it's touched. It stops for confirmation on
+keymaps (Preonic, Sofle and Moonlander) → push to `origin` if builds pass.
+It stops for confirmation on
 conflicts, build failures, or a dirty tree. A SessionStart hook
 (`.claude/settings.local.json`) checks on session start whether
 `personal-keymaps` is behind `upstream/master` and will surface that in
