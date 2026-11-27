@@ -124,6 +124,14 @@ uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t *record, uint16_t prev_
     }
 }
 
+// Outermost thumb keys (cf. the Moonlander's lower row): hold = the modifier,
+// tap = a GUI shortcut. The tap keycodes here are placeholders (KC_F24 rather
+// than KC_T so Flow Tap leaves the Alt key alone); process_record_user() sends
+// the real tap. Both are '*' in chordal_hold_layout so same-hand GUI/Alt chords
+// (GUI+1..5 etc.) still resolve as holds.
+#define GUI_INS  LGUI_T(KC_INS)   // hold = Left GUI, tap = GUI+Insert
+#define ALT_GUIT LALT_T(KC_F24)   // hold = Left Alt, tap = GUI+T
+
 // Mod-taps whose tap sends a modified key (a mod-tap can only tap a basic keycode,
 // so the tap is overridden here; the hold still goes through the tap-hold engine).
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -144,6 +152,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             break;
+        case GUI_INS:
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(LGUI(KC_INS));
+                return false;
+            }
+            break;
+        case ALT_GUIT:
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(LGUI(KC_T));
+                return false;
+            }
+            break;
     }
 
     // All other keys fall through to the default handler
@@ -161,7 +181,7 @@ LGUI_T(KC_BSPC), KC_A,   KC_R,    KC_S,    KC_T,    KC_G,                       
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
   SC_LSPO,  KC_Z,   KC_X,    TD(TD_1),KC_D,    KC_V, KC_MUTE,       LCTL(KC_Z),KC_K,    KC_H,   KC_COMM, KC_DOT,  KC_SLSH, SC_RSPC,
   //|------+-------+--------+--------+--------+------|  ===  |        |  ===  |--------+-------+--------+--------+--------+---------|
-         KC_LGUI,TD(TD_5),TD(TD_2),LT(_GRN,KC_SPC),LCTL_T(KC_F12),RCTL_T(KC_ENTER),LT(_BLU,KC_SPACE),TD(TD_3),KC_ESCAPE,KC_LALT
+         GUI_INS,TD(TD_5),TD(TD_2),LT(_GRN,KC_SPC),LCTL_T(KC_F12),RCTL_T(KC_ENTER),LT(_BLU,KC_SPACE),TD(TD_3),KC_ESCAPE,ALT_GUIT
   //            \--------+--------+--------+---------+-------|        |--------+---------+--------+---------+-------/
 ),
         [_BLU] = LAYOUT(
@@ -216,7 +236,7 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] = LAYOUT(
   //|------+-------+--------+--------+--------+------|  ===  |         |  ===  |--------+-------+--------+--------+--------+---------|
   'L', 'L', 'L', 'L', 'L', 'L', '*',                                          '*', 'R', 'R', 'R', 'R', 'R', 'R',
   //|------+-------+--------+--------+--------+------|  ===  |         |  ===  |--------+-------+--------+--------+--------+---------|
-                  'L', 'L', 'L', '*', '*',                                '*', '*', 'R', 'R', 'R'
+                  '*', 'L', 'L', '*', '*',                                '*', '*', 'R', 'R', '*'
   //            \--------+--------+--------+---------+-------|         |--------+---------+--------+---------+-------/
 );
 

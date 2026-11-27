@@ -104,6 +104,10 @@ Oryx-exported keymap that follows its own conventions — see below):
 - **Ctrl/F12 mod-taps** (`LCTL_T(KC_F12)`, plus `RCTL_T(KC_F12)` on the
   Preonic): hold = Ctrl, tap = Ctrl+F12, overridden in `process_record_user()`
   the same way. Moonlander's `MT(MOD_LCTL, KC_F12)` keys do the same.
+- **Sofle outer thumb keys**: `GUI_INS` (hold GUI, tap GUI+Insert) and
+  `ALT_GUIT` (hold Alt, tap GUI+T), loosely mirroring the Moonlander's lower
+  row. Both are `'*'` in `chordal_hold_layout` so same-hand GUI/Alt chords
+  (GUI+1..5 etc.) still resolve as holds.
 - **Tap dances**: `TD_1`–`TD_5`, mostly for Belgian-French dead-key/accent
   input (e.g. `RALT(KC_QUOTE)`, `RALT(KC_GRAVE)` variants) via
   `ACTION_TAP_DANCE_FN_ADVANCED`, plus two simple `ACTION_TAP_DANCE_DOUBLE`.
@@ -134,7 +138,7 @@ load average, CPU, disk busy, memory.
   packet layout is the `ST_*` enum in `keymap.c` and must stay in sync with
   `sofle_status.py`. Values show `--` after 5 s without data; screens blank
   when stale (master stays on for 60 s after typing, for the layer name).
-- **Flash budget is tight** (Pro Micro, ~690 bytes free): to fit, MOUSEKEY
+- **Flash budget is tight** (Pro Micro, ~600 bytes free): to fit, MOUSEKEY
   and COMMAND are off, the font is ASCII-only (`OLED_FONT_END 127`), plus
   `NO_ACTION_ONESHOT` and `LAYER_STATE_8BIT`. Check the size line after any
   Sofle change. Both halves must run the same firmware.
