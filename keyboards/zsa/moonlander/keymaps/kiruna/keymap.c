@@ -384,6 +384,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     break;
 
+    case MT(MOD_LCTL, KC_F12):
+      // All three Ctrl/F12 keys (left thumb, both bottom rows): hold = Ctrl,
+      // tap = Ctrl+F12 (a mod-tap can only tap a basic keycode, so override it).
+      if (record->tap.count && record->event.pressed) {
+        tap_code16(LCTL(KC_F12));
+        return false;
+      }
+      break;
+
     case DUAL_FUNC_0:
       if (record->tap.count > 0) {
         if (record->event.pressed) {

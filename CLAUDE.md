@@ -18,6 +18,8 @@ three personal keymaps, all named **`kiruna`**:
   ["zsa/defaults"]` reference (that community module only exists in ZSA's fork).
   The C key's ç was also moved from Oryx's tap-then-hold (`DOUBLE_HOLD`) to a
   plain hold (`SINGLE_HOLD`) in `dance_0_*`, matching Preonic/Sofle `TD_1`.
+  And the `MT(MOD_LCTL, KC_F12)` keys' tap is overridden to Ctrl+F12 in
+  `process_record_user()`.
   Re-exporting from Oryx later will likely need the same fixups reapplied.
 
 Remotes: `origin` = `git@github.com:tvdlinde/qmk_firmware.git` (Tim's fork),
@@ -99,6 +101,9 @@ Oryx-exported keymap that follows its own conventions — see below):
   code (the linker drops it) and they use the 200ms default. The backspace one is special-cased in
   `process_record_user()` so its *tap* sends Ctrl+Backspace (delete word)
   while its *hold* still resolves as GUI through QMK's normal tap-hold engine.
+- **Ctrl/F12 mod-taps** (`LCTL_T(KC_F12)`, plus `RCTL_T(KC_F12)` on the
+  Preonic): hold = Ctrl, tap = Ctrl+F12, overridden in `process_record_user()`
+  the same way. Moonlander's `MT(MOD_LCTL, KC_F12)` keys do the same.
 - **Tap dances**: `TD_1`–`TD_5`, mostly for Belgian-French dead-key/accent
   input (e.g. `RALT(KC_QUOTE)`, `RALT(KC_GRAVE)` variants) via
   `ACTION_TAP_DANCE_FN_ADVANCED`, plus two simple `ACTION_TAP_DANCE_DOUBLE`.
@@ -129,7 +134,7 @@ load average, CPU, disk busy, memory.
   packet layout is the `ST_*` enum in `keymap.c` and must stay in sync with
   `sofle_status.py`. Values show `--` after 5 s without data; screens blank
   when stale (master stays on for 60 s after typing, for the layer name).
-- **Flash budget is tight** (Pro Micro, ~720 bytes free): to fit, MOUSEKEY
+- **Flash budget is tight** (Pro Micro, ~690 bytes free): to fit, MOUSEKEY
   and COMMAND are off, the font is ASCII-only (`OLED_FONT_END 127`), plus
   `NO_ACTION_ONESHOT` and `LAYER_STATE_8BIT`. Check the size line after any
   Sofle change. Both halves must run the same firmware.

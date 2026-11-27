@@ -100,7 +100,8 @@ uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t *record, uint16_t prev_
     }
 }
 
-// Only the backspace mod-tap needs custom handling (its tap sends Ctrl+Backspace).
+// Mod-taps whose tap sends a modified key (a mod-tap can only tap a basic keycode,
+// so the tap is overridden here; the hold still goes through the tap-hold engine).
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LGUI_T(KC_BSPC):
@@ -109,6 +110,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             // Ctrl+Backspace (delete word) instead of a bare Backspace.
             if (record->tap.count && record->event.pressed) {
                 tap_code16(LCTL(KC_BSPC));
+                return false;
+            }
+            break;
+        case LCTL_T(KC_F12):
+        case RCTL_T(KC_F12):
+            // Bottom-row Ctrl keys: hold = Ctrl, tap = Ctrl+F12.
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(LCTL(KC_F12));
                 return false;
             }
             break;
